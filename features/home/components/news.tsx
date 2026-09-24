@@ -9,37 +9,43 @@ interface Story {
   title: string;
   image: string;
   alt: string;
+  href: string;
+  imagePosition?: string;
 }
 
 const featuredStory = {
-  category: "Editorial",
-  date: "12 Oct 2026",
-  title: "The quiet power of African print on the global runway",
+  category: "The Hollywood Reporter",
+  date: "02 Dec 2024",
+  title: "‘Project Runway’ to Launch African Edition in 2025",
   excerpt:
-    "From heritage textiles to modern silhouettes, this season's strongest collections are proving that bold, thoughtful storytelling belongs at the center of fashion.",
-  image: "/images/news-featured.jpg",
-  alt: "High fashion model walking runway in vibrant African couture",
-  href: "#read-story",
+    "A new edition of the hit fashion design competition show, Project Runway Africa, is set to launch next year, showcasing emerging African designer talent from across the continent.",
+  image: "/images/different-fashions/series-of-black-models.jpg",
+  alt: "‘Project Runway’ to Launch African Edition in 2025 - The Hollywood Reporter",
+  href: "https://www.hollywoodreporter.com/tv/tv-news/project-runway-africa-2025-1236074710/",
 };
 
 const supportingStories: Story[] = [
   {
     id: 1,
-    category: "Culture",
-    date: "09 Oct 2026",
-    title:
-      "Why Lagos Fashion Week is still the most important stop on the continent",
-    image: "/images/news-lagos-fashion-week.jpg",
-    alt: "Models on the runway at Lagos Fashion Week",
+    category: "World Screen",
+    date: "03 Dec 2024",
+    title: "Project Runway Africa Coming in 2025",
+    image: "/images/new-fashion-images/black-lady-walking.png",
+    alt: "Project Runway Africa Coming in 2025 - World Screen",
+    href: "https://worldscreen.com/tvformats/project-runway-africa-coming-in-2025/",
+    imagePosition: "object-top",
   },
   {
     id: 2,
-    category: "Design",
-    date: "05 Oct 2026",
+    category: "C21Media",
+    date: "03 Dec 2024",
     title:
-      "New talent, new textures, and the return of the statement silhouette",
-    image: "/images/news-silhouette.jpg",
-    alt: "Fashion designer showcasing structural statement silhouettes",
+      "Takeout Media and What Network to fashion African version of Project Runway",
+    image:
+      "/images/new-fashion-images/two-african-dressmaker-woman-designed-new-red-dress-mannequin-tailor-office-black-seamstress-girls.jpg",
+    alt: "Takeout Media and What Network to fashion African version of Project Runway - C21Media",
+    href: "https://www.c21media.net/news/takeout-media-and-what-network-to-fashion-african-version-of-project-runway/",
+    imagePosition: "object-center",
   },
 ];
 
@@ -77,25 +83,16 @@ export function News() {
     >
       <div className="flex flex-col gap-12 lg:gap-[72px] items-center w-full">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center w-full gap-4">
-          <p
-            className={`text-[var(--color-warm-neutral-500)] text-xs tracking-[0.1em] uppercase font-sans font-medium m-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
-            }`}
-          >
-            ( LATEST STORIES )
-          </p>
+        <div className="flex flex-col items-center text-center w-full">
           <div className="overflow-hidden">
             <h2
-              className={`uppercase m-0 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`m-0 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-full opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
               }`}
             >
-              NEWS
+              News
             </h2>
           </div>
         </div>
@@ -110,11 +107,18 @@ export function News() {
                 : "scale-95 opacity-0 motion-reduce:scale-100 motion-reduce:opacity-100"
             }`}
           >
-            <img
-              src={featuredStory.image}
-              alt={featuredStory.alt}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03]"
-            />
+            <a
+              href={featuredStory.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta-600)]"
+            >
+              <img
+                src={featuredStory.image}
+                alt={featuredStory.alt}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03]"
+              />
+            </a>
           </div>
 
           {/* Featured Copy Column */}
@@ -126,13 +130,20 @@ export function News() {
             }`}
           >
             {/* Metadata */}
-            <span className="text-[var(--color-warm-neutral-500)] text-xs font-sans">
-              {featuredStory.date}
+            <span className="text-[var(--color-warm-neutral-500)] text-xs font-sans font-medium uppercase tracking-wider">
+              {featuredStory.category} • {featuredStory.date}
             </span>
 
             {/* Headline — semantic h5: 40px mobile -> 56px desktop */}
             <h5 className="m-0 tracking-tight text-[var(--color-warm-neutral-1000)]">
-              {featuredStory.title}
+              <a
+                href={featuredStory.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--color-magenta-600)] transition-colors duration-300"
+              >
+                {featuredStory.title}
+              </a>
             </h5>
 
             {/* Excerpt */}
@@ -143,6 +154,8 @@ export function News() {
             {/* Read Story Link */}
             <a
               href={featuredStory.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex gap-2.5 items-center group cursor-pointer pt-2 text-[var(--color-magenta-600)] transition-colors duration-200"
             >
               <span className="text-sm font-medium font-sans group-hover:underline">
@@ -173,37 +186,46 @@ export function News() {
 
           {supportingStories.map((story, idx) => (
             <div key={story.id}>
-              <article
-                className={`flex flex-row gap-4 sm:gap-8 items-center justify-between py-6 sm:py-8 group cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
-                }`}
-                style={{
-                  transitionDelay: `${(idx + 4) * 100}ms`,
-                }}
+              <a
+                href={story.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta-600)]"
               >
-                {/* Story Info */}
-                <div className="flex flex-col gap-2.5 sm:gap-3 items-start flex-1 min-w-0 pr-2 sm:pr-4">
-                  <span className="text-[var(--color-warm-neutral-500)] text-xs font-sans">
-                    {story.date}
-                  </span>
+                <article
+                  className={`flex flex-row gap-4 sm:gap-8 items-center justify-between py-6 sm:py-8 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+                  }`}
+                  style={{
+                    transitionDelay: `${(idx + 4) * 100}ms`,
+                  }}
+                >
+                  {/* Story Info */}
+                  <div className="flex flex-col gap-2.5 sm:gap-3 items-start flex-1 min-w-0 pr-2 sm:pr-4">
+                    <span className="text-[var(--color-warm-neutral-500)] text-xs font-sans font-medium uppercase tracking-wider">
+                      {story.category} • {story.date}
+                    </span>
 
-                  {/* Headline — semantic h6: 32px mobile & desktop */}
-                  <h6 className="m-0 tracking-tight text-[var(--color-warm-neutral-1000)] group-hover:text-[var(--color-magenta-600)] transition-colors duration-300">
-                    {story.title}
-                  </h6>
-                </div>
+                    {/* Headline — semantic h6: 32px mobile & desktop */}
+                    <h6 className="m-0 tracking-tight text-[var(--color-warm-neutral-1000)] group-hover:text-[var(--color-magenta-600)] transition-colors duration-300">
+                      {story.title}
+                    </h6>
+                  </div>
 
-                {/* Story Thumbnail */}
-                <div className="w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)]">
-                  <img
-                    src={story.image}
-                    alt={story.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.05]"
-                  />
-                </div>
-              </article>
+                  {/* Story Thumbnail */}
+                  <div className="w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)]">
+                    <img
+                      src={story.image}
+                      alt={story.alt}
+                      className={`w-full h-full object-cover ${
+                        story.imagePosition || "object-center"
+                      } transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.05]`}
+                    />
+                  </div>
+                </article>
+              </a>
               <div className="bg-[var(--color-warm-neutral-200)] h-px w-full" />
             </div>
           ))}

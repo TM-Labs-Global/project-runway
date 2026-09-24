@@ -4,7 +4,7 @@ import { SmoothBackgroundSequence } from "@/shared/components/ui";
 
 export function HomePage() {
   return (
-    <main className="flex flex-col min-h-screen bg-[var(--color-bg-page)] font-sans relative">
+    <main className="flex flex-col min-h-screen bg-[var(--bg-page)] font-sans relative">
       {/* Decoupled Site Header (hidden behind pinned intro, unveiled during outro split) */}
       <SiteHeader />
 

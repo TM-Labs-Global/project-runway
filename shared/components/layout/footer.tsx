@@ -4,24 +4,26 @@ import { useState } from "react";
 import { Linkedin, Instagram } from "lucide-react";
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  // Newsletter state (commented out with newsletter section)
+  // const [email, setEmail] = useState("");
+  // const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setTimeout(() => setSubscribed(false), 3000);
-      setEmail("");
-    }
-  };
+  // const handleSubscribe = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (email.trim()) {
+  //     setSubscribed(true);
+  //     setTimeout(() => setSubscribed(false), 3000);
+  //     setEmail("");
+  //   }
+  // };
 
   return (
     <footer className="bg-[var(--color-plum-900)] w-full text-white overflow-hidden pt-[var(--spacing-15)] lg:pt-[var(--spacing-30)] pb-[var(--spacing-10)] lg:pb-[var(--spacing-15)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
       <div className="flex flex-col gap-10 lg:gap-[60px] w-full">
-        {/* Top Zone - Sponsorship & Action */}
+        {/* Top Zone - Sponsorship & Action (Moved down to column below) */}
+        {/*
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between w-full gap-6 sm:gap-8">
-          <h2 className="uppercase font-display font-normal text-4xl lg:text-h4-desktop leading-[var(--leading-feature)] lg:leading-[var(--leading-h4-desktop)] text-white w-full max-w-[680px] m-0">
+          <h2 className="font-display font-normal text-4xl lg:text-h4-desktop leading-[var(--leading-feature)] lg:leading-[var(--leading-h4-desktop)] text-white w-full max-w-[680px] m-0">
             For Sponsorship &<br />
             Partnership
           </h2>
@@ -34,11 +36,11 @@ export function Footer() {
           </a>
         </div>
 
-        {/* Editorial Divider */}
         <div className="bg-[var(--color-brand-yellow)]/20 h-px w-full" />
+        */}
 
         {/* Bottom Zone - 3 Columns */}
-        <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-10 lg:gap-12 pt-2 lg:pt-4">
+        <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-10 lg:gap-8 pt-2 lg:pt-4">
           {/* Brand Column */}
           <div className="w-full lg:w-[320px] shrink-0">
             <div className="w-[240px] sm:w-[300px] lg:w-[320px] h-auto">
@@ -50,7 +52,24 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Newsletter Column */}
+          {/* Sponsorship Column (Replaced Newsletter Column) */}
+          <div className="w-full lg:w-[420px] shrink-0 flex flex-col gap-6 sm:gap-7">
+            <h2 className="font-display font-normal text-[30px] sm:text-[38px] lg:text-[48px] leading-tight lg:leading-[54px] text-white max-w-[420px] m-0">
+              For Sponsorship & Partnership
+            </h2>
+
+            <div>
+              <a
+                href="mailto:info@projectrunwayafrica.com"
+                className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] [--calypso-fill:var(--color-action-primary)] font-semibold transition-all duration-300 hover:scale-[1.02] inline-flex items-center"
+              >
+                <span>Contact Us</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Newsletter Column (Commented Out) */}
+          {/*
           <div className="w-full lg:w-[460px] xl:w-[480px] shrink-0 flex flex-col gap-6 sm:gap-7">
             <p className="text-[var(--color-brand-yellow)] text-xs sm:text-sm uppercase font-semibold font-sans tracking-wider m-0">
               Newsletter
@@ -61,7 +80,6 @@ export function Footer() {
               and everything Runway.
             </p>
 
-            {/* Newsletter Controls */}
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-stretch sm:items-center w-full gap-3 sm:gap-4">
               <input
                 type="email"
@@ -79,9 +97,10 @@ export function Footer() {
               </button>
             </form>
           </div>
+          */}
 
           {/* Social Column */}
-          <div className="w-full lg:w-[140px] shrink-0 flex flex-col gap-4 sm:gap-5">
+          <div className="w-full lg:w-auto shrink-0 flex flex-col gap-4 sm:gap-5">
             <p className="text-[var(--color-brand-yellow)] text-xs sm:text-sm uppercase font-semibold font-sans tracking-wider m-0">
               Follow
             </p>
@@ -97,7 +116,7 @@ export function Footer() {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/projectrunway.africa/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"

@@ -12,14 +12,25 @@ export function HomeHero() {
 
   useEffect(() => {
     const handleResize = () => {
-      setViewport({ width: window.innerWidth, height: window.innerHeight });
+      // Use Visual Viewport API on mobile for the true visible height
+      // (excludes browser chrome like the address bar), falling back to innerHeight.
+      const vv = window.visualViewport;
+      setViewport({
+        width: vv ? vv.width : window.innerWidth,
+        height: vv ? vv.height : window.innerHeight,
+      });
       if (headerRef.current) {
         setHeaderHeight(headerRef.current.offsetHeight);
       }
     };
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // Visual Viewport fires its own resize event on mobile when chrome collapses
+    window.visualViewport?.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -56,10 +67,10 @@ export function HomeHero() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[260vh]"
+      className="relative w-full h-[260dvh]"
     >
       {/* Sticky Full-Viewport Stage with 0 padding to allow full-bleed expansion */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
         {/* Top Header Row (Headline + Description & CTA) - Layered at z-0 */}
         <motion.div
           ref={headerRef}
@@ -68,15 +79,16 @@ export function HomeHero() {
         >
           <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-8 lg:gap-12">
             {/* Main Headline with Masked Editorial Line Reveals */}
-            <div className="w-full lg:w-[760px] lg:shrink-0">
-              <h2 className="uppercase font-display font-normal tracking-tight text-[var(--color-plum-900)] m-0">
-                Get Ready for style drama
+            <div className="w-full lg:w-[600px] lg:shrink-0">
+              <h2 className="font-display font-normal tracking-tight text-white m-0">
+                Get Ready For{" "}
+                <span className="text-[var(--color-brand-yellow)]">Style Drama</span>
               </h2>
             </div>
 
             {/* Description & CTA with Staggered Fade Up */}
             <div className="w-full lg:w-[360px] lg:shrink-0 flex flex-col gap-6 pt-2">
-              <p className="text-[var(--color-plum-900)]/70 font-sans text-sm sm:text-base leading-[22px] m-0">
+              <p className="text-white/70 font-sans text-sm sm:text-base leading-[22px] m-0">
                 The biggest fashion face-off. 10 designers compete for the ultimate
                 fashion spotlight. Who will claim the crown as Africa&apos;s next
                 biggest fashion icon?
@@ -86,7 +98,7 @@ export function HomeHero() {
                   href="https://projectrunwayafrica.com/project-runway-africa-season-one-registration/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-primary btn-lg btn-calypso transition-all duration-300 hover:scale-[1.02]"
+                  className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] [--calypso-fill:var(--color-action-primary)] font-semibold transition-all duration-300 hover:scale-[1.02]"
                 >
                   <span>Register Now</span>
                 </a>

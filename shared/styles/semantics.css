@@ -1,6 +1,6 @@
 :root {
   /* Backgrounds */
-  --bg-page: var(--color-bg-page); /* usage: Canvas background */
+  --bg-page: var(--color-plum-900); /* usage: Canvas background (deep purple) */
   --bg-surface: var(--color-warm-neutral-0); /* usage: Default light surface */
   --bg-surface-hover: var(--color-warm-neutral-100); /* usage: Subtle surface hover */
   --bg-surface-active: var(--color-warm-neutral-200); /* usage: Subtle surface active */

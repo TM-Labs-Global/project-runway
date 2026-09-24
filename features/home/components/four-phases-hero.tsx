@@ -27,16 +27,16 @@ function OutroContent() {
     <div className="w-full px-[var(--spacing-5)] lg:px-[var(--spacing-25)] text-center">
       <p
         className="
-          uppercase font-display font-normal tracking-tight text-white
+          font-display font-normal tracking-tight text-[var(--color-plum-900)]
           text-6xl lg:text-9xl
           leading-[var(--leading-section)] lg:leading-[var(--leading-hero-desktop)]
         "
       >
-        Africa&apos;s next
+        Africa&apos;s Next
         <br />
-        <span className="text-[var(--color-brand-yellow)]">fashion icon</span>
+        <span className="text-[var(--color-brand-yellow)]">Fashion Icon</span>
         <br />
-        is being made.
+        Is Being Made.
       </p>
     </div>
   );
@@ -175,8 +175,8 @@ export function FourPhasesHero() {
         },
       });
 
-      // Initial state: section has plum background and is interactive
-      tl.set(section, { backgroundColor: "var(--color-plum-900)", pointerEvents: "auto" }, 0);
+      // Initial state: section has warm linen background and is interactive
+      tl.set(section, { backgroundColor: "var(--color-bg-page)", pointerEvents: "auto" }, 0);
 
       // ------------------------------------------------------------------
       // Phase 1 (0 → 0.5): Background settles from 1.5× zoom to 1×
@@ -274,7 +274,7 @@ export function FourPhasesHero() {
     <section
       ref={sectionRef}
       // height: 100svh — uses small-viewport-height to avoid mobile chrome jank
-      className="relative z-50 w-full overflow-hidden bg-[var(--color-plum-900)]"
+      className="relative z-50 w-full overflow-hidden bg-[var(--color-bg-page)]"
       style={{ height: "100svh" }}
     >
       {/* ------------------------------------------------------------------ */}
@@ -307,7 +307,7 @@ export function FourPhasesHero() {
       >
         <h1
           className="
-            uppercase font-display font-normal tracking-tight
+            font-display font-normal tracking-tight
             text-6xl lg:text-9xl
             leading-[var(--leading-section)] lg:leading-[var(--leading-hero-desktop)]
             flex flex-col items-center text-center text-white
@@ -318,10 +318,14 @@ export function FourPhasesHero() {
             <motion.span
               initial={{ y: "110%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 1.4,
+                delay: 0.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="inline-block"
             >
-              The Emmy-winning
+              The Emmy-Winning
             </motion.span>
           </span>
 
@@ -331,9 +335,9 @@ export function FourPhasesHero() {
               initial={{ y: "110%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                duration: 0.9,
-                delay: 0.12,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 1.4,
+                delay: 0.45,
+                ease: [0.22, 1, 0.36, 1],
               }}
               className="inline-block text-[var(--color-brand-yellow)]"
             >
@@ -347,16 +351,55 @@ export function FourPhasesHero() {
               initial={{ y: "110%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                duration: 0.9,
-                delay: 0.24,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 1.4,
+                delay: 0.75,
+                ease: [0.22, 1, 0.36, 1],
               }}
               className="inline-block"
             >
-              is in Africa.
+              Is In Africa.
             </motion.span>
           </span>
         </h1>
+
+        {/* Scroll-hint arrow — fades in after headlines settle, loops forever.  */}
+        {/* Lives inside contentRef so GSAP's autoAlpha:0 hides it automatically */}
+        {/* when the scroll sequence kicks in — no extra wiring needed.           */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.8, ease: "easeOut" }}
+          className="mt-10 lg:mt-12 flex flex-col items-center gap-1.5 select-none"
+          aria-hidden="true"
+        >
+          <span className="text-white/50 text-[10px] tracking-[0.2em] uppercase font-sans">
+            Scroll
+          </span>
+          {/* Inner div handles the infinite bob — separated from the fade-in */}
+          <motion.div
+            animate={{ y: [0, 10, 0], opacity: [0.9, 0.35, 0.9] }}
+            transition={{
+              duration: 1.4,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+          >
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-[var(--color-brand-yellow)]"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* ------------------------------------------------------------------ */}
@@ -364,7 +407,7 @@ export function FourPhasesHero() {
       {/* ------------------------------------------------------------------ */}
       <div
         ref={revealerRef}
-        className="absolute inset-0 w-full h-full bg-[var(--color-plum-900)] will-change-transform"
+        className="absolute inset-0 w-full h-full bg-[var(--color-bg-page)] will-change-transform"
         style={{
           // 4-point polygon collapsed to a single invisible dot at centre
           clipPath: "polygon(49.5% 50%, 50.5% 50%, 50.5% 50%, 49.5% 50%)",
@@ -416,7 +459,7 @@ export function FourPhasesHero() {
         className="
           absolute inset-0 w-full h-full
           flex items-center justify-center
-          bg-[var(--color-plum-900)] will-change-transform
+          bg-[var(--color-bg-page)] will-change-transform
         "
         style={{ transform: "scale(0)" }}
       >
@@ -427,7 +470,7 @@ export function FourPhasesHero() {
         className="
           absolute inset-0 w-full h-full
           flex items-center justify-center
-          bg-[var(--color-plum-900)] will-change-transform
+          bg-[var(--color-bg-page)] will-change-transform
         "
         style={{ transform: "scale(0)" }}
       >

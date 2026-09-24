@@ -72,43 +72,43 @@ export function Icons() {
       className="bg-transparent w-full text-white overflow-hidden py-[var(--spacing-15)] lg:py-[var(--spacing-30)]"
     >
       {/* Top Content Area — padded within standard section margins */}
-      <div className="flex flex-col gap-8 lg:gap-[var(--spacing-32)] w-full px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
+      <div className="flex flex-col gap-8 lg:gap-[var(--spacing-10)] w-full px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
 
         {/* Main Headline — Line 1 indented right on desktop, Line 2 flush left */}
         <h2
           id="africa-icon-heading"
-          className="uppercase font-display font-normal tracking-tight flex flex-col m-0 text-white"
+          className="font-display font-normal tracking-tight flex flex-col m-0 text-white"
         >
-          {/* Line 1 — flush left on mobile, indented on desktop */}
-          <span className="overflow-hidden inline-block lg:pl-[220px]">
-            <span
-              className={`inline-block transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 motion-reduce:translate-y-0"
-              }`}
-            >
-              ARE YOU{" "}
-              <span className="text-[var(--color-brand-yellow)]">AFRICA&apos;S</span>
-            </span>
+          {/* Line 1 — flush left on mobile, indented on desktop (sweeps in from the right edge of the screen) */}
+          <span
+            className={`block lg:pl-[220px] transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-[100vw] opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100"
+            }`}
+          >
+            Are You{" "}
+            <span className="text-[var(--color-brand-yellow)]">Africa&apos;s</span>
           </span>
 
-          {/* Line 2 — always flush left */}
-          <span className="overflow-hidden inline-block">
-            <span
-              className={`inline-block transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 motion-reduce:translate-y-0"
-              }`}
-            >
-              NEXT{" "}
-              <span className="text-[var(--color-brand-yellow)]">FASHION ICON</span>
-            </span>
+          {/* Line 2 — always flush left (sweeps in from the left edge of the screen, synchronized) */}
+          <span
+            className={`block transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-[100vw] opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100"
+            }`}
+          >
+            Next{" "}
+            <span className="text-[var(--color-brand-yellow)]">Fashion Icon</span>
           </span>
         </h2>
 
         {/* Body Text + CTA — positioned on the right on desktop, left on mobile */}
         <div className="flex justify-start lg:justify-end w-full">
-          <div className="flex flex-col gap-[var(--spacing-6)] items-start w-full max-w-[400px]">
+          <div className="flex flex-col gap-[var(--spacing-6)] items-start w-full max-w-[480px]">
             <p
-              className={`font-sans text-base leading-relaxed text-white/80 m-0 transition-all duration-[600ms] delay-[300ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`font-sans text-base leading-relaxed text-white/80 m-0 transition-all duration-[900ms] delay-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 motion-reduce:translate-y-0"
               }`}
             >
@@ -117,7 +117,7 @@ export function Icons() {
               runway. Apply now and own your moment.
             </p>
             <div
-              className={`transition-all duration-[600ms] delay-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`transition-all duration-[900ms] delay-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 motion-reduce:translate-y-0"
               }`}
             >
@@ -125,7 +125,7 @@ export function Icons() {
                 href="https://projectrunwayafrica.com/project-runway-africa-season-one-registration/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary btn-lg btn-calypso transition-all duration-300 hover:scale-[1.02]"
+                className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] [--calypso-fill:var(--color-action-primary)] font-semibold transition-all duration-300 hover:scale-[1.02]"
               >
                 <span>Register Now</span>
               </a>
