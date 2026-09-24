@@ -1,34 +1,25 @@
 :root {
   /* Spacing Scale (4px base) */
-  --spacing-0: 0px;
-  --spacing-1: 4px;
-  /* 0.25rem */
-  --spacing-1-5: 6px;
-  /* 0.375rem */
-  --spacing-2: 8px;
-  /* 0.5rem */
-  --spacing-3: 12px;
-  /* 0.75rem */
-  --spacing-4: 16px;
-  /* 1rem */
-  --spacing-5: 20px;
-  /* 1.25rem */
-  --spacing-6: 24px;
-  /* 1.5rem */
-  --spacing-8: 32px;
-  /* 2rem */
-  --spacing-10: 40px;
-  /* 2.5rem */
-  --spacing-12: 48px;
-  /* 3rem */
-  --spacing-16: 64px;
-  /* 4rem */
-  --spacing-20: 80px;
-  /* 5rem */
-  --spacing-24: 96px;
-  /* 6rem */
-  --spacing-32: 128px;
-  /* 8rem */
+  --spacing-0: 0px; /* usage: Zero spacing */
+  --spacing-1: 4px; /* usage: 4px base increment */
+  --spacing-1-5: 6px; /* usage: 6px micro increment */
+  --spacing-2: 8px; /* usage: 8px standard spacing */
+  --spacing-3: 12px; /* usage: 12px standard spacing */
+  --spacing-4: 16px; /* usage: 16px standard small gap */
+  --spacing-5: 20px; /* usage: 20px column gutter & mobile margin */
+  --spacing-6: 24px; /* usage: 24px card internal gap */
+  --spacing-8: 32px; /* usage: 32px card padding & button horizontal padding */
+  --spacing-10: 40px; /* usage: 40px small control height & card padding */
+  --spacing-12: 48px; /* usage: 48px default control height & card gap */
+  --spacing-14: 56px; /* usage: 56px large button height (normalized from 54px) */
+  --spacing-15: 60px; /* usage: 60px editorial gap */
+  --spacing-16: 64px; /* usage: 64px compact section padding */
+  --spacing-18: 72px; /* usage: 72px large form field & statistic rhythm */
+  --spacing-20: 80px; /* usage: 80px section padding */
+  --spacing-24: 96px; /* usage: 96px large spacing */
+  --spacing-25: 100px; /* usage: 100px standard section padding & desktop outer margin */
+  --spacing-30: 120px; /* usage: 120px large editorial section padding */
+  --spacing-32: 128px; /* usage: 128px large spacing */
 
   /* Border Radii */
   --radius-none: 0px;

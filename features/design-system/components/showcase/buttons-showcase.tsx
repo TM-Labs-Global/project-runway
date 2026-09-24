@@ -17,12 +17,12 @@ export function ButtonsShowcase() {
                     Brand & Interaction Variants
                 </Text>
                 <div className="flex flex-wrap items-center gap-4">
-                    <Button variant="primary">Book Now</Button>
-                    <Button variant="secondary">Search Flights</Button>
-                    <Button variant="tertiary">View Details</Button>
+                    <Button variant="primary">Explore Runway</Button>
+                    <Button variant="secondary">View Collection</Button>
+                    <Button variant="tertiary">Read Editorial</Button>
                 </div>
                 <Text variant="xs" intent="muted" className="mt-4 block">
-                    Yellow for primary CTA, Navy for secondary actions, Ocean Blue for tertiary
+                    Magenta 500 for primary CTA, Plum 900 for secondary brand actions, Plum 100 for tertiary controls
                 </Text>
             </div>
 
@@ -32,10 +32,10 @@ export function ButtonsShowcase() {
                     Button Sizes
                 </Text>
                 <div className="flex flex-wrap items-center gap-4">
-                    <Button size="sm">Small</Button>
-                    <Button size="md">Medium</Button>
-                    <Button size="lg">Large</Button>
-                    <Button size="xl">Extra Large</Button>
+                    <Button size="sm">Small (40px)</Button>
+                    <Button size="md">Medium (48px)</Button>
+                    <Button size="lg">Large (56px)</Button>
+                    <Button size="xl">Extra Large (72px)</Button>
                 </div>
             </div>
 
@@ -45,8 +45,8 @@ export function ButtonsShowcase() {
                     Outline & Ghost Variants
                 </Text>
                 <div className="flex flex-wrap items-center gap-4">
-                    <Button variant="outline-navy">Outline Navy</Button>
-                    <Button variant="outline-blue">Outline Blue</Button>
+                    <Button variant="outline-plum">Outline Plum</Button>
+                    <Button variant="outline-magenta">Outline Magenta</Button>
                     <Button variant="ghost">Ghost Button</Button>
                     <Button variant="link" href="#">Link Variant</Button>
                 </div>

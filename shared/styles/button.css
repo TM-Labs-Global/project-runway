@@ -10,10 +10,10 @@
 
     font-family: var(--font-sans);
     font-weight: var(--weight-medium);
-    font-size: var(--text-sm);
-    line-height: 1;
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
 
-    padding: var(--spacing-2) var(--spacing-4);
+    padding: var(--spacing-3) var(--spacing-6);
     cursor: pointer;
     transition: all var(--transition-fast);
 
@@ -28,7 +28,8 @@
 /* Variants */
 .btn-primary {
     background-color: var(--color-action-primary);
-    color: var(--color-text-primary);
+    color: var(--text-display); /* Black text on Magenta 500 per spec 7.1 */
+    padding: var(--spacing-5) var(--spacing-8); /* 20px top/bottom, 32px left/right */
     box-shadow: var(--shadow-sm);
 
     &:hover {
@@ -37,51 +38,60 @@
     }
 
     &:active {
+        background-color: var(--color-action-primary-active);
         transform: translateY(1px);
     }
 }
 
 .btn-secondary {
     background-color: var(--color-action-secondary);
-    color: var(--color-text-inverse);
+    color: var(--text-inverse); /* White text on Plum 900 per spec 7.2 */
     box-shadow: var(--shadow-sm);
 
     &:hover {
         background-color: var(--color-action-secondary-hover);
         box-shadow: var(--shadow-md);
     }
+
+    &:active {
+        transform: translateY(1px);
+    }
 }
 
 .btn-tertiary {
     background-color: var(--color-action-tertiary);
-    color: var(--color-text-inverse);
+    color: var(--color-action-secondary);
     box-shadow: var(--shadow-sm);
 
     &:hover {
-        background-color: var(--color-ocean-600);
+        background-color: var(--color-action-tertiary-hover);
         box-shadow: var(--shadow-md);
     }
 }
 
-.btn-outline-navy {
+/* Outline Variants */
+.btn-outline-plum,
+.btn-outline-navy,
+.btn-outline {
     background-color: transparent;
     color: var(--color-action-secondary);
     border: 2px solid var(--color-action-secondary);
 
     &:hover {
         background-color: var(--color-action-secondary);
-        color: var(--color-text-inverse);
+        color: var(--text-inverse);
     }
 }
 
+.btn-outline-magenta,
 .btn-outline-blue {
     background-color: transparent;
-    color: var(--color-action-tertiary);
-    border: 2px solid var(--color-action-tertiary);
+    color: var(--color-action-primary);
+    border: 2px solid var(--color-action-primary);
 
     &:hover {
-        background-color: var(--color-action-tertiary);
-        color: var(--color-text-inverse);
+        background-color: var(--color-action-primary);
+        color: var(--text-display);
     }
 }
 
@@ -124,53 +134,213 @@
     }
 }
 
-/* Sizes */
+/* Sizes (Spec 6.3 & 7.1) */
 .btn-sm {
-    font-size: var(--text-xs);
-    padding: var(--spacing-1-5) var(--spacing-3);
-    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    line-height: var(--leading-label-sm);
+    height: var(--spacing-10); /* 40px small control height */
+    padding: 0 var(--spacing-4); /* 16px */
+    border-radius: var(--radius-button);
 }
 
 .btn-md {
-    font-size: var(--text-sm);
-    padding: var(--spacing-2) var(--spacing-4);
-    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    height: var(--spacing-12); /* 48px default control height */
+    padding: 0 var(--spacing-6); /* 24px */
+    border-radius: var(--radius-button);
 }
 
 .btn-lg {
     font-size: var(--text-base);
-    padding: var(--spacing-3) var(--spacing-6);
-    border-radius: var(--radius-lg);
+    line-height: var(--leading-body);
+    height: var(--spacing-14); /* 56px large button height from spec 7.1 */
+    padding: 0 var(--spacing-8); /* 32px standard button horizontal padding from spec 7.1 */
+    border-radius: var(--radius-button);
 }
 
 .btn-xl {
     font-size: var(--text-lg);
-    padding: var(--spacing-4) var(--spacing-8);
-    border-radius: var(--radius-xl);
+    line-height: var(--leading-body-lg);
+    height: var(--spacing-18); /* 72px large control */
+    padding: 0 var(--spacing-10); /* 40px */
+    border-radius: var(--radius-button);
 }
 
 /* Utility classes for icon buttons */
 .btn-icon-only {
     padding: 0;
-    width: var(--spacing-10);
-    height: var(--spacing-10);
-}
-
-.btn-icon-only-sm {
-    width: var(--spacing-8);
-    height: var(--spacing-8);
-}
-
-.btn-icon-only-lg {
     width: var(--spacing-12);
     height: var(--spacing-12);
 }
 
-.btn-icon-only-xl {
+.btn-icon-only-sm {
+    width: var(--spacing-10);
+    height: var(--spacing-10);
+}
+
+.btn-icon-only-lg {
     width: var(--spacing-14);
     height: var(--spacing-14);
 }
 
+.btn-icon-only-xl {
+    width: var(--spacing-18);
+    height: var(--spacing-18);
+}
+
 .btn-rounded {
     border-radius: 9999px;
+}
+
+/* ==========================================================================
+   Button 11 ("Calypso") Kinetic Liquid Hover Animation
+   ========================================================================== */
+
+.btn-calypso,
+.button-calypso,
+.button--calypso {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: none;
+    transition: background-color 0.4s ease, color 0.3s ease, transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Base Pseudo-elements */
+.btn-calypso::before,
+.btn-calypso::after,
+.button-calypso::before,
+.button-calypso::after,
+.button--calypso::before,
+.button--calypso::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Inner Text Wrapper */
+.btn-calypso span,
+.button-calypso span,
+.button--calypso span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: inherit;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+/* Kinetic Text Warp Keyframe Execution */
+.btn-calypso:hover:not(:disabled) span,
+.button-calypso:hover:not(:disabled) span,
+.button--calypso:hover:not(:disabled) span {
+    animation:
+        CalypsoMoveScaleUpInitial 0.3s forwards,
+        CalypsoMoveScaleUpEnd 0.3s forwards 0.3s;
+}
+
+/* Text Exit: Stretches 2x vertically, flies upward off-screen, fades out */
+@keyframes CalypsoMoveScaleUpInitial {
+    to {
+        transform: translate3d(0, -105%, 0) scale3d(1, 2, 1);
+        opacity: 0;
+    }
+}
+
+/* Text Entry: Enters from bottom stretched 2x, snaps back to rest at center */
+@keyframes CalypsoMoveScaleUpEnd {
+    from {
+        transform: translate3d(0, 100%, 0) scale3d(1, 2, 1);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+/* Stage 1: Circular Expanding Droplet (::before) */
+.btn-calypso::before,
+.button-calypso::before,
+.button--calypso::before {
+    background: var(--calypso-fill, var(--color-plum-900));
+    width: 140%;
+    height: 0;
+    padding-bottom: 140%;
+    top: -120%;
+    left: -20%;
+    border-radius: 50%;
+    transform: translate3d(0, 68%, 0) scale3d(0, 0, 0);
+    transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.btn-calypso:hover:not(:disabled)::before,
+.button-calypso:hover:not(:disabled)::before,
+.button--calypso:hover:not(:disabled)::before {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+/* Stage 2: Solid Rectangular Snap (::after) with 2px overhang to eliminate subpixel bleed */
+.btn-calypso::after,
+.button-calypso::after,
+.button--calypso::after {
+    background: var(--calypso-fill, var(--color-plum-900));
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    transform: translate3d(0, -100%, 0);
+    transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.btn-calypso:hover:not(:disabled)::after,
+.button-calypso:hover:not(:disabled)::after,
+.button--calypso:hover:not(:disabled)::after {
+    transform: translate3d(0, 0, 0);
+    transition-duration: 0.05s;
+    transition-delay: 0.4s;
+    transition-timing-function: linear;
+}
+
+/* High contrast text color & synced base background on hover (delayed by 0.4s to match completion) */
+.btn-calypso:hover:not(:disabled),
+.button-calypso:hover:not(:disabled),
+.button--calypso:hover:not(:disabled) {
+    color: var(--text-inverse, #ffffff);
+    background-color: var(--calypso-fill, var(--color-plum-900));
+    transition: background-color 0.05s ease 0.4s, color 0.3s ease;
+}
+
+/* Accessibility: Disable motion when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .btn-calypso span,
+    .btn-calypso:hover span,
+    .button-calypso span,
+    .button-calypso:hover span,
+    .button--calypso span,
+    .button--calypso:hover span {
+        animation: none;
+    }
+    .btn-calypso::before,
+    .btn-calypso:hover::before,
+    .btn-calypso::after,
+    .btn-calypso:hover::after,
+    .button-calypso::before,
+    .button-calypso:hover::before,
+    .button-calypso::after,
+    .button-calypso:hover::after,
+    .button--calypso::before,
+    .button--calypso:hover::before,
+    .button--calypso::after,
+    .button--calypso:hover::after {
+        transition: none;
+    }
+    .btn-calypso:hover::after,
+    .button-calypso:hover::after,
+    .button--calypso:hover::after {
+        transform: translate3d(0, 0, 0);
+    }
 }

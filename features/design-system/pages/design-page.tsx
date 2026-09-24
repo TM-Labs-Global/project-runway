@@ -31,7 +31,7 @@ export default function DesignPage() {
         process.cwd(),
         "shared",
         "styles",
-        "spacing.css",
+        "dimensions.css",
     );
 
     const colorsCss = fs.readFileSync(colorsPath, "utf8");

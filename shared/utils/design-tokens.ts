@@ -79,15 +79,20 @@ export function parseSemanticTokens(cssContent: string) {
   lines.forEach((line) => {
     const categoryMatch = line.match(/\/\*\s+(.+)\s+\*\//);
     if (categoryMatch) {
-      currentCategory = categoryMatch[1].trim().toLowerCase();
+      const raw = categoryMatch[1].trim().toLowerCase();
+      if (raw.includes("background")) currentCategory = "background";
+      else if (raw.includes("action")) currentCategory = "action";
+      else if (raw.includes("text")) currentCategory = "text";
+      else if (raw.includes("border")) currentCategory = "border";
+      else currentCategory = raw;
       return;
     }
 
     const varMatch = line.match(
-      /--color-([a-z0-9-]+):\s*([^;]+);(?:\s*\/\*\s*usage:\s*(.+)\s*\*\/)?/,
+      /--([a-z0-9-]+):\s*([^;]+);(?:\s*\/\*\s*usage:\s*(.+)\s*\*\/)?/,
     );
-    if (varMatch) {
-      const token = `color-${varMatch[1]}`;
+    if (varMatch && !varMatch[1].startsWith("radius-") && !varMatch[1].startsWith("shadow-")) {
+      const token = varMatch[1];
       const value = varMatch[2].trim();
       const usage = varMatch[3]?.trim() || "";
 
@@ -112,7 +117,7 @@ export function parseTypographyTokens(cssContent: string) {
   // Given the request, let's try to extract key info from classes.
 
   const typography: TypographyToken[] = [];
-  const classRegex = /\.text-([a-z0-9-]+)\s*\{([^}]+)\}/g;
+  const classRegex = /(?:\.text-|@utility\s+text-)([a-z0-9-]+)\s*\{([^}]+)\}/g;
   let match;
 
   while ((match = classRegex.exec(cssContent)) !== null) {

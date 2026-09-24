@@ -29,3 +29,89 @@
     --z-toast: 400;
     --z-max: 9999;
 }
+
+/* ==========================================================================
+   Editorial Motion Animations (Masked Line Reveals, Staggered Fades, Banner Scale)
+   ========================================================================== */
+@keyframes editorial-line-reveal {
+  0% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes editorial-fade-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes editorial-banner-scale {
+  0% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-editorial-line-1 {
+  animation: editorial-line-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-editorial-line-2 {
+  animation: editorial-line-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animate-editorial-line-3 {
+  animation: editorial-line-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animate-editorial-fade-1 {
+  animation: editorial-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animate-editorial-fade-2 {
+  animation: editorial-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animate-editorial-banner {
+  animation: editorial-banner-scale 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   Marquee (infinite scroll) — icons section gallery
+   3 DOM copies → translate -33.333% (one set width) for a seamless loop
+   ========================================================================== */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
+.animate-marquee-track {
+  width: max-content;  /* % translate is relative to THIS element's width — must be content width, not viewport */
+  will-change: transform;
+}
+
+/* Only scroll when the user has NOT requested reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-marquee-track {
+    animation: marquee-scroll 20s linear infinite;
+  }
+}
+
+/* Pause on hover — pointer devices only (touch would freeze on tap) */
+@media (hover: hover) and (pointer: fine) {
+  .animate-marquee-track:hover {
+    animation-play-state: paused;
+  }
+}

@@ -1,62 +1,72 @@
 :root {
   /* Backgrounds */
-  --bg-page: var(--color-neutral-50);
-  --bg-surface: var(--color-white);
-  --bg-surface-hover: var(--color-neutral-50);
-  --bg-surface-active: var(--color-neutral-100);
-  --bg-surface-elevated: var(--color-white);
+  --bg-page: var(--color-bg-page); /* usage: Canvas background */
+  --bg-surface: var(--color-warm-neutral-0); /* usage: Default light surface */
+  --bg-surface-hover: var(--color-warm-neutral-100); /* usage: Subtle surface hover */
+  --bg-surface-active: var(--color-warm-neutral-200); /* usage: Subtle surface active */
+  --bg-surface-elevated: var(--color-warm-neutral-0); /* usage: Elevated card surface */
 
-  --bg-primary: var(--color-primary-500);
-  --bg-primary-hover: var(--color-primary-600);
-  --bg-primary-subtle: var(--color-primary-50);
+  --bg-primary: var(--color-plum-900); /* usage: Primary brand dark surface */
+  --bg-primary-hover: var(--color-plum-800); /* usage: Primary brand hover surface */
+  --bg-primary-subtle: var(--color-plum-50); /* usage: Primary brand subtle surface */
 
-  --bg-secondary: var(--color-secondary-500);
-  --bg-secondary-hover: var(--color-secondary-600);
-  --bg-secondary-subtle: var(--color-secondary-50);
+  --bg-secondary: var(--color-magenta-500); /* usage: Secondary interactive surface */
+  --bg-secondary-hover: var(--color-magenta-600); /* usage: Secondary interactive hover */
+  --bg-secondary-subtle: var(--color-magenta-50); /* usage: Secondary interactive subtle */
 
-  --bg-danger: var(--color-error-500);
-  --bg-danger-hover: var(--color-error-600);
-  --bg-danger-subtle: var(--color-error-50);
+  /* Editorial & Brand Surfaces */
+  --bg-editorial: var(--color-brand-lavender); /* usage: Editorial surfaces & soft highlights */
+  --bg-brand: var(--color-plum-800); /* usage: Strong brand surface */
+  --bg-brand-deep: var(--color-plum-900); /* usage: Deep brand surface */
+  --bg-promotional: var(--color-brand-yellow); /* usage: Promotional emphasis surface */
 
-  /* Action Colors */
-  --color-action-primary: var(--color-sun-500);
-  --color-action-primary-hover: var(--color-sun-600);
-  --color-action-secondary: var(--color-navy-700);
-  --color-action-secondary-hover: var(--color-navy-800);
-  --color-action-tertiary: var(--color-ocean-600);
-  --color-action-tertiary-hover: var(--color-ocean-700);
-  --color-action-disabled: var(--color-neutral-200);
+  --bg-danger: var(--color-error-500); /* usage: Danger feedback surface */
+  --bg-danger-hover: var(--color-error-600); /* usage: Danger feedback hover */
+  --bg-danger-subtle: var(--color-error-50); /* usage: Danger subtle surface */
+
+  /* Actions */
+  --color-action-primary: var(--color-magenta-500); /* usage: Primary CTA action default */
+  --color-action-primary-hover: var(--color-magenta-600); /* usage: Primary CTA action hover */
+  --color-action-primary-active: var(--color-magenta-700); /* usage: Primary CTA action pressed */
+  --color-action-secondary: var(--color-plum-900); /* usage: Secondary action default */
+  --color-action-secondary-hover: var(--color-plum-800); /* usage: Secondary action hover */
+  --color-action-tertiary: var(--color-plum-100); /* usage: Tertiary action default */
+  --color-action-tertiary-hover: var(--color-plum-200); /* usage: Tertiary action hover */
+  --color-action-disabled: var(--color-warm-neutral-200); /* usage: Disabled action state */
 
   --foreground: var(--text-base);
   --background: var(--bg-page);
 
-  /* Text Colors */
-  --text-base: var(--color-neutral-900);
-  --text-primary: var(--color-primary-600);
-  --text-secondary: var(--color-neutral-600);
-  --text-tertiary: var(--color-neutral-400);
-  --text-disabled: var(--color-neutral-300);
+  /* Text */
+  --text-base: var(--color-warm-neutral-900); /* usage: Primary body & interface text */
+  --text-display: var(--color-warm-neutral-1000); /* usage: Editorial display text */
+  --text-primary: var(--color-warm-neutral-900); /* usage: Primary interface text */
+  --text-secondary: var(--color-warm-neutral-600); /* usage: Strong secondary text */
+  --text-tertiary: var(--color-warm-neutral-500); /* usage: Secondary and placeholder text */
+  --text-disabled: var(--color-warm-neutral-500); /* usage: Disabled text */
 
-  --text-brand: var(--color-primary-600);
-  --text-inverse: var(--color-white);
+  --text-brand: var(--color-plum-900); /* usage: Brand identity text */
+  --text-accent: var(--color-brand-yellow); /* usage: Promotional accent text */
+  --text-inverse: var(--color-warm-neutral-0); /* usage: Inverse light text on dark surfaces */
 
-  --text-success: var(--color-success-700);
-  --text-warning: var(--color-warning-700);
-  --text-error: var(--color-error-700);
-  --text-info: var(--color-info-700);
+  --text-success: var(--color-success-700); /* usage: Success feedback text */
+  --text-warning: var(--color-warning-700); /* usage: Warning feedback text */
+  --text-error: var(--color-error-700); /* usage: Error feedback text */
+  --text-info: var(--color-info-700); /* usage: Info feedback text */
 
   /* Borders */
-  --border-default: var(--color-neutral-200);
-  --border-subtle: var(--color-neutral-100);
-  --border-strong: var(--color-neutral-300);
-  --border-focus: var(--color-primary-300);
+  --border-subtle: var(--color-warm-neutral-200); /* usage: Subtle section & card border */
+  --border-default: var(--color-warm-neutral-500); /* usage: Default control border */
+  --border-strong: var(--color-warm-neutral-900); /* usage: Strong high-contrast border */
+  --border-inverse: var(--color-warm-neutral-0); /* usage: Inverse border on dark surfaces */
+  --border-focus: var(--color-plum-500); /* usage: Focus indicator border */
 
-  --border-error: var(--color-error-300);
-  --border-success: var(--color-success-300);
+  --border-error: var(--color-error-500); /* usage: Error state border */
+  --border-success: var(--color-success-500); /* usage: Success state border */
 
-  /* Component Specific Semantics (mapped generally) */
-  --link-color: var(--color-primary-600);
-  --link-hover: var(--color-primary-700);
+  /* Component Specific Semantics */
+  --link-color: var(--color-magenta-500);
+  --link-hover: var(--color-magenta-600);
 
   --shadow-card: var(--shadow-sm);
   --shadow-popover: var(--shadow-lg);
@@ -64,26 +74,8 @@
   --radius-card: var(--radius-lg);
   --radius-button: var(--radius-md);
   --radius-input: var(--radius-md);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode Overrides */
-    --bg-page: var(--color-neutral-950);
-    --bg-surface: var(--color-neutral-900);
-    --bg-surface-hover: var(--color-neutral-800);
-    --bg-surface-active: var(--color-neutral-700);
-
-    --text-base: var(--color-neutral-50);
-    --text-primary: var(--color-primary-300);
-    --text-secondary: var(--color-neutral-400);
-    --text-tertiary: var(--color-neutral-500);
-
-    --border-default: var(--color-neutral-800);
-    --border-subtle: var(--color-neutral-900);
-    --border-strong: var(--color-neutral-700);
-
-    --bg-primary-subtle: var(--color-primary-950);
-    --bg-danger-subtle: var(--color-error-950);
-  }
+  /* Button text compatibility aliases */
+  --color-text-primary: var(--color-warm-neutral-1000);
+  --color-text-inverse: var(--color-warm-neutral-0);
 }
