@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 export function BoldIdeas() {
@@ -70,11 +71,12 @@ export function BoldIdeas() {
             }}
             className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-[var(--radius-2xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)]"
           >
-            <img
+            <Image
               src="/images/man-in-orange-jacket new main-compressed.png"
               alt="Fashion model in orange couture jacket with sculpted dreadlocks"
-              className="w-full h-full object-cover object-center"
-              loading="lazy"
+              fill
+              sizes="(max-width: 1024px) 100vw, 600px"
+              className="object-cover object-center"
             />
           </motion.div>
         </div>

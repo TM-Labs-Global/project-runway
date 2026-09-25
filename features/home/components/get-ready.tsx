@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -68,12 +69,13 @@ export function GetReady() {
             </div>
 
             {/* Panel Image Left/Bottom */}
-            <div className="h-[280px] sm:h-[320px] lg:h-[380px] w-full rounded-[var(--radius-2xl)] overflow-hidden shadow-sm">
-              <img
+            <div className="relative h-[280px] sm:h-[320px] lg:h-[380px] w-full rounded-[var(--radius-2xl)] overflow-hidden shadow-sm">
+              <Image
                 src={imgPanelLeft}
                 alt="Map with destination pins representing participating countries"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                loading="lazy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 hover:scale-[1.03]"
               />
             </div>
           </div>
@@ -81,12 +83,13 @@ export function GetReady() {
           {/* Right Column (flex-col-reverse on mobile so Stat 2 appears before Image Right) */}
           <div className="flex flex-col-reverse lg:flex-col gap-6 lg:gap-10 items-start w-full lg:w-[480px] lg:shrink-0">
             {/* Panel Image Right */}
-            <div className="h-[280px] sm:h-[360px] lg:h-[440px] w-full rounded-[var(--radius-2xl)] overflow-hidden shadow-sm">
-              <img
+            <div className="relative h-[280px] sm:h-[360px] lg:h-[440px] w-full rounded-[var(--radius-2xl)] overflow-hidden shadow-sm">
+              <Image
                 src={imgPanelRight}
                 alt="Fashion runway model Ben Iwara walking in a designer gown"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                loading="lazy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 480px"
+                className="object-cover transition-transform duration-700 hover:scale-[1.03]"
               />
             </div>
 
@@ -111,12 +114,13 @@ export function GetReady() {
             </span>
           </h4>
 
-          <div className="h-[280px] sm:h-[340px] lg:h-[540px] w-full max-w-[1000px] rounded-[var(--radius-2xl)] overflow-hidden shadow-sm">
-            <img
+          <div className="relative h-[280px] sm:h-[340px] lg:h-[540px] w-full max-w-[1000px] rounded-[var(--radius-2xl)] overflow-hidden shadow-sm">
+            <Image
               src={imgPanelBottom}
               alt="Two African dressmakers designing and draping a red dress on a mannequin"
-              className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-              loading="lazy"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1000px"
+              className="object-cover transition-transform duration-700 hover:scale-[1.03]"
             />
           </div>
         </div>

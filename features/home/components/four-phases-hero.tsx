@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -285,10 +286,13 @@ export function FourPhasesHero() {
         className="absolute inset-0 w-full h-full will-change-transform"
         style={{ transform: "scale(1.5)", transformOrigin: "center" }}
       >
-        <img
+        <Image
           src={BG_SRC}
-          alt=""
-          className="w-full h-full object-cover object-center"
+          alt="African high-fashion model"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
           draggable={false}
         />
         {/* Dark overlay so the headline text remains legible */}
@@ -435,10 +439,12 @@ export function FourPhasesHero() {
               transformOrigin: "center",
             }}
           >
-            <img
+            <Image
               src={src}
-              alt=""
-              className="w-full h-full object-cover object-center"
+              alt="Editorial African fashion"
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
               draggable={false}
             />
           </div>

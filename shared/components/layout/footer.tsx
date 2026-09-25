@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Linkedin, Instagram } from "lucide-react";
 
 export function Footer() {
@@ -44,9 +45,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="w-full lg:w-[320px] shrink-0">
             <div className="w-[240px] sm:w-[300px] lg:w-[320px] h-auto">
-              <img
+              <Image
                 src="/logo/project-runway-logo.svg"
                 alt="Project Runway Africa Logo"
+                width={320}
+                height={108}
                 className="w-full h-auto object-contain"
               />
             </div>

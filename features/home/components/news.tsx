@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 interface Story {
   id: number;
@@ -111,12 +112,14 @@ export function News() {
               href={featuredStory.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta-600)]"
+              className="relative block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta-600)]"
             >
-              <img
+              <Image
                 src={featuredStory.image}
                 alt={featuredStory.alt}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03]"
+                fill
+                sizes="(max-width: 1024px) 100vw, 520px"
+                className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03]"
               />
             </a>
           </div>
@@ -215,11 +218,13 @@ export function News() {
                   </div>
 
                   {/* Story Thumbnail */}
-                  <div className="w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)]">
-                    <img
+                  <div className="relative w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)]">
+                    <Image
                       src={story.image}
                       alt={story.alt}
-                      className={`w-full h-full object-cover ${
+                      fill
+                      sizes="(max-width: 640px) 120px, 220px"
+                      className={`object-cover ${
                         story.imagePosition || "object-center"
                       } transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.05]`}
                     />

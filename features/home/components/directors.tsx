@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Producer {
   id: number;
   image: string;
@@ -33,12 +35,13 @@ function ProducerCard({
     <article className="flex flex-col text-left group">
       {/* Portrait Photo Frame with Subtle Hover Zoom */}
       <div className="relative w-full aspect-[3/4] max-h-[520px] rounded-[var(--radius-xl)] lg:rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-warm-neutral-200)] shadow-sm">
-        <img
-          alt={name}
+        <Image
           src={image}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          alt={name}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectPosition }}
-          loading="lazy"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
         />
       </div>
 

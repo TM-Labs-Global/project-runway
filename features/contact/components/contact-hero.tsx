@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 
 export function ContactHero() {
@@ -67,11 +68,13 @@ export function ContactHero() {
             }}
             className="relative w-full max-w-[520px] aspect-[3/4] overflow-hidden"
           >
-            <img
+            <Image
               src="/images/man-in-orange-jacket new main-compressed.png"
               alt="Fashion model wearing orange jacket with sculpted dreadlocks"
-              className="w-full h-full object-cover object-center"
-              loading="eager"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 520px"
+              className="object-cover object-center"
             />
           </motion.div>
         </div>

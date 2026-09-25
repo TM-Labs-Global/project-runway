@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 /* --------------------------------------------------------------------------
    5 distinct Unsplash fashion model images — alternating heights for stagger
@@ -149,13 +150,14 @@ export function Icons() {
             (img, idx) => (
               <div
                 key={idx}
-                className={`${img.height} w-[220px] sm:w-[260px] lg:w-[295px] shrink-0 rounded-[var(--radius-lg)] overflow-hidden bg-[var(--color-warm-neutral-200)] shadow-sm mr-[var(--spacing-5)] lg:mr-[var(--spacing-6)]`}
+                className={`relative ${img.height} w-[220px] sm:w-[260px] lg:w-[295px] shrink-0 rounded-[var(--radius-lg)] overflow-hidden bg-[var(--color-warm-neutral-200)] shadow-sm mr-[var(--spacing-5)] lg:mr-[var(--spacing-6)]`}
               >
-                <img
+                <Image
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.04]"
-                  loading="lazy"
+                  fill
+                  sizes="295px"
+                  className="object-cover transition-transform duration-700 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.04]"
                 />
               </div>
             )
