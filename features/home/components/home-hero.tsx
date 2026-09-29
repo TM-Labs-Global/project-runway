@@ -46,9 +46,11 @@ export function HomeHero() {
   const initialTop = headerHeight + gap;
 
   // Animations driven by scroll progress
-  // Decisive exit: text fades out and lifts cleanly by 20% scroll
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -30]);
+  // Grace window [0 → 0.06]: text stays fully visible even if Lenis has a slight
+  // momentum overshoot past the floor when the four-phases pin releases.
+  // Framer clamps outside the range, so values below 0.06 are always opacity 1.
+  const textOpacity = useTransform(scrollYProgress, [0.06, 0.26], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0.06, 0.26], [0, -30]);
 
   // Video expands to full page (100vw x 100vh) over 0 -> 0.8 scroll progress
   const videoWidth = useTransform(

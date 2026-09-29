@@ -12,12 +12,16 @@ export function HomePage() {
       <FourPhasesHero />
 
       {/*
-        The 600vh margin-top compensates for the missing ScrollTrigger spacer.
-        Pin scroll distance = 7×vh, FourPhasesHero height = 1×vh → gap = 6×vh.
-        This ensures HomeHero's top edge aligns with the viewport exactly when
-        the FourPhasesHero pin releases at the end of 7×vh of scrolling.
+        The margin-top compensates for the missing ScrollTrigger spacer (pinSpacing: false).
+        GSAP pin distance = 7 × window.innerHeight (= 7 × svh on iOS).
+        FourPhasesHero section height = 100svh.
+        Gap needed = 7×svh − 1×svh = 6×svh.
+        BUT: the margin uses `vh` which on iOS Safari equals `lvh` (large), NOT `svh`.
+        So the exact cross-browser formula is: 700vh − 100svh.
+        On desktop (svh = vh): 700vh − 100vh = 600vh ← identical to before.
+        On iOS Safari (svh < vh): margin grows to bridge the svh/lvh gap precisely.
       */}
-      <div id="home-hero-wrapper" style={{ marginTop: "600vh" }}>
+      <div id="home-hero-wrapper" style={{ marginTop: "calc(700vh - 100svh)" }}>
         <HomeHero />
       </div>
 

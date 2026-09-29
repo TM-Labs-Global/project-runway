@@ -153,9 +153,29 @@ export function FourPhasesHero() {
             // Step 1: freeze the animation
             self.kill();
 
-            // Step 2: record the floor (current scroll = HomeHero entry point)
+            // Step 2: record the floor as HomeHero's ACTUAL DOM position.
+            //
+            // Why not use lenis.scroll directly?
+            //   On mobile with syncTouch: true, Lenis applies touch momentum,
+            //   so lenis.scroll overshoots the GSAP pin end by several hundred
+            //   pixels when onLeave fires. Recording lenis.scroll as the floor
+            //   permanently locks the user INSIDE HomeHero's animation (not at
+            //   its start), causing the large blank space and partially-animated state.
+            //
+            // Why getBoundingClientRect() works:
+            //   getBoundingClientRect().top = HomeHero DOM position − native scroll.
+            //   Adding lenis.scroll cancels the overshoot delta exactly:
+            //     floor = getBCR().top + lenis.scroll
+            //           = (HomeHeroDOM − nativeScroll) + lenis.scroll
+            //     Since native scroll ≈ lenis.scroll in Lenis native mode:
+            //           = HomeHeroDOM  ← correct entry point every time
+            //   This is immune to momentum overshoot, svh/dvh/vh unit differences,
+            //   and address-bar collapse timing across iOS Safari and Android Chrome.
             const lenis = (window as any).__lenis;
-            const floor = lenis ? Math.round(lenis.scroll) : window.innerHeight * 7;
+            const homeHeroWrapper = document.getElementById("home-hero-wrapper");
+            const floor = homeHeroWrapper && lenis
+              ? Math.round(homeHeroWrapper.getBoundingClientRect().top + lenis.scroll)
+              : window.innerHeight * 7;
 
             // Step 3: enforce the floor on every Lenis tick
             if (lenis) {
@@ -274,17 +294,20 @@ export function FourPhasesHero() {
   return (
     <section
       ref={sectionRef}
-      // height: 100svh — uses small-viewport-height to avoid mobile chrome jank
+      // minHeight: 100svh prevents the 1-2px sub-pixel gap on mobile where
+      // the plum page background peeks through at the bottom edge.
       className="relative z-50 w-full overflow-hidden bg-[var(--color-bg-page)]"
-      style={{ height: "100svh" }}
+      style={{ minHeight: "100svh", height: "100svh" }}
     >
       {/* ------------------------------------------------------------------ */}
       {/* Layer 1: Background image — starts zoomed in at scale(1.5)          */}
       {/* ------------------------------------------------------------------ */}
       <div
         ref={bgRef}
-        className="absolute inset-0 w-full h-full will-change-transform"
-        style={{ transform: "scale(1.5)", transformOrigin: "center" }}
+        // Extra 4px height (+2px top/-2px bottom via negative top/bottom)
+        // closes the sub-pixel gap without affecting the transform origin.
+        className="absolute inset-x-0 w-full will-change-transform"
+        style={{ transform: "scale(1.5)", transformOrigin: "center", top: "-2px", bottom: "-2px" }}
       >
         <Image
           src={BG_SRC}
