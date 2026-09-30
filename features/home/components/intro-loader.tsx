@@ -54,11 +54,13 @@ export function IntroLoader() {
       const heroVideo = document.querySelector(".hero-video-container");
       const headlineLines = document.querySelectorAll(".hero-headline-line-inner");
       const heroCtas = document.querySelector(".hero-cta-group");
+      const heroAudio = document.querySelector(".hero-audio-toggle");
 
       if (siteHeader) gsap.set(siteHeader, { y: "-120%" });
       if (heroVideo) gsap.set(heroVideo, { scale: 1.5, transformOrigin: "center center" });
       if (headlineLines.length > 0) gsap.set(headlineLines, { y: "120%" });
       if (heroCtas) gsap.set(heroCtas, { scale: 0, opacity: 0 });
+      if (heroAudio) gsap.set(heroAudio, { y: 20, opacity: 0 });
 
       const tl = gsap.timeline({
         delay: 0.3,
@@ -235,12 +237,25 @@ export function IntroLoader() {
         );
       }
 
-      // ─── PHASE 5: CTA Reveal ───
+      // ─── PHASE 5: CTA & Audio Toggle Reveal ───
       if (heroCtas) {
         tl.to(
           heroCtas,
           {
             scale: 1,
+            opacity: 1,
+            duration: 1.2,
+            ease: "hop",
+          },
+          "wipe+=0.5"
+        );
+      }
+
+      if (heroAudio) {
+        tl.to(
+          heroAudio,
+          {
+            y: 0,
             opacity: 1,
             duration: 1.2,
             ease: "hop",

@@ -198,3 +198,11 @@
   opacity: 0;
   will-change: transform, opacity;
 }
+
+.intro-active .hero-audio-toggle {
+  transform: translateY(20px);
+  opacity: 0 !important;
+  pointer-events: none !important;
+  will-change: transform, opacity;
+}
+

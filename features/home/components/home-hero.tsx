@@ -135,7 +135,7 @@ export function HomeHero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 pointer-events-none z-10" />
 
       {/* 3. Audio Toggle Button (Floating Glassmorphism Pill) */}
-      <div className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 pointer-events-auto">
+      <div className="hero-audio-toggle fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-40 pointer-events-auto">
         <button
           type="button"
           onClick={toggleSound}
