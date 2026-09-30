@@ -4,43 +4,43 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 /* --------------------------------------------------------------------------
-   5 distinct Unsplash fashion model images — alternating heights for stagger
+   Project Runway Africa photoshoot gallery — alternating heights for stagger
    -------------------------------------------------------------------------- */
 const galleryImages = [
   {
     id: 1,
-    src: "/images/new-fashion-images/black-lady-walking.png",
-    alt: "Fashion model walking in modern designer outfit",
+    src: "/images/new-pr-images/female-model-posing-on-stage.jpg",
+    alt: "Project Runway Africa female model posing on stage",
     height: "h-[300px] sm:h-[380px] lg:h-[460px]",
   },
   {
     id: 2,
-    src: "/images/new-fashion-images/ben-iwara.jpg",
-    alt: "Fashion model Ben Iwara in high-fashion couture",
+    src: "/images/new-pr-images/male-model-old-school.jpg",
+    alt: "Fashion model in editorial brown satin jacket and tailored styling",
     height: "h-[220px] sm:h-[280px] lg:h-[330px]",
   },
   {
     id: 3,
-    src: "/images/new-fashion-images/cheerful-young-darkskinned-woman-white-trendy-blouse-draws-clothes-samples-attractive-fashion-designer-sits-table.jpg",
-    alt: "Young African fashion designer sketching apparel designs",
+    src: "/images/new-pr-images/female-model-in-blue-dress.jpg",
+    alt: "Fashion model in vibrant blue couture gown",
     height: "h-[300px] sm:h-[380px] lg:h-[460px]",
   },
   {
     id: 4,
-    src: "/images/new-fashion-images/lady-wearing-black-posing.png",
-    alt: "Fashion model posing in black editorial ensemble",
+    src: "/images/new-pr-images/male-model-in-black-shirt-and-trouser-with-ankara-cap.jpg",
+    alt: "Fashion model in monochrome attire with ankara print cap",
     height: "h-[220px] sm:h-[280px] lg:h-[330px]",
   },
   {
     id: 5,
-    src: "/images/new-fashion-images/pexels-cottonbro-4716575.jpg",
-    alt: "Fashion tailoring and editorial styling process",
+    src: "/images/new-pr-images/a-female-model-with-pointy-fan.jpg",
+    alt: "High-fashion model with sculptural fan accessory",
     height: "h-[300px] sm:h-[380px] lg:h-[460px]",
   },
   {
     id: 6,
-    src: "/images/new-fashion-images/stylish-casual-african-american-man-jeans-jacket-black-beret-clothes-store-looking-new-jacket-mannequin.jpg",
-    alt: "African designer in beret inspecting mannequin garment in studio",
+    src: "/images/new-pr-images/female-model-with-black-coat.jpg",
+    alt: "Runway model wearing statement black couture coat",
     height: "h-[220px] sm:h-[280px] lg:h-[330px]",
   },
 ];
@@ -88,8 +88,8 @@ export function Icons() {
                 : "translate-x-[100vw] opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100"
             }`}
           >
-            Are You{" "}
-            <span className="text-[var(--color-brand-yellow)]">Africa&apos;s</span>
+            <span className="text-[var(--color-mono-600)]">Are You The Next</span>{" "}
+            <span className="text-white">Undiscovered</span>
           </span>
 
           {/* Line 2 — always flush left (sweeps in from the left edge of the screen, synchronized) */}
@@ -100,8 +100,8 @@ export function Icons() {
                 : "-translate-x-[100vw] opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100"
             }`}
           >
-            Next{" "}
-            <span className="text-[var(--color-brand-yellow)]">Fashion Icon</span>
+            <span className="text-[var(--color-mono-600)]">African</span>{" "}
+            <span className="text-white">Fashion Designer?</span>
           </span>
         </h2>
 
@@ -113,9 +113,8 @@ export function Icons() {
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 motion-reduce:translate-y-0"
               }`}
             >
-              Project Runway Africa is calling Africa&apos;s boldest designers to
-              redefine the fashion landscape. Bring your A-game to the ultimate
-              runway. Apply now and own your moment.
+              Project Runway Africa is calling the continent&apos;s most talented designers to
+              showcase their skills on the ultimate runway. Apply now and bring your vision to life.
             </p>
             <div
               className={`transition-all duration-[900ms] delay-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -126,7 +125,7 @@ export function Icons() {
                 href="https://projectrunwayafrica.com/project-runway-africa-season-one-registration/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] [--calypso-fill:var(--color-action-primary)] font-semibold transition-all duration-300 hover:scale-[1.02]"
+                className="btn btn-lg btn-calypso bg-white text-black [--calypso-fill:#e5e7eb] [--text-inverse:#000000] hover:text-black font-semibold transition-all duration-300 hover:scale-[1.02]"
               >
                 <span>Register Now</span>
               </a>
@@ -150,7 +149,7 @@ export function Icons() {
             (img, idx) => (
               <div
                 key={idx}
-                className={`relative ${img.height} w-[220px] sm:w-[260px] lg:w-[295px] shrink-0 rounded-[var(--radius-lg)] overflow-hidden bg-[var(--color-warm-neutral-200)] shadow-sm mr-[var(--spacing-5)] lg:mr-[var(--spacing-6)]`}
+                className={`relative ${img.height} w-[220px] sm:w-[260px] lg:w-[295px] shrink-0 rounded-[var(--radius-lg)] overflow-hidden bg-[var(--color-mono-900)] shadow-sm mr-[var(--spacing-5)] lg:mr-[var(--spacing-6)]`}
               >
                 <Image
                   src={img.src}

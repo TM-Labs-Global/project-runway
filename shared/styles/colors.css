@@ -74,10 +74,31 @@
   --color-info-700: #1d4ed8;
 
   /* ==========================================================================
-     Project Runway Brand Palette (Source of Truth)
+     High-Contrast Editorial Monochrome & Grey Scale (Dominant Theme)
+     ========================================================================== */
+  --color-mono-0: #ffffff;
+  --color-mono-50: #f9fafb;
+  --color-mono-100: #f3f4f6;
+  --color-mono-200: #e5e7eb;
+  --color-mono-300: #d1d5db;
+  --color-mono-400: #9ca3af;
+  --color-mono-500: #6b7280;
+  --color-mono-600: #4b5563;
+  --color-mono-700: #374151;
+  --color-mono-800: #1f2937;
+  --color-mono-900: #111827;
+  --color-mono-950: #0a0a0a;
+  --color-mono-1000: #000000;
+
+  /* ==========================================================================
+     Project Runway Preserved Signature Accents
      ========================================================================== */
 
-  /* Plum — Identity, dark surfaces, navigation */
+  /* Preserved Accent 1: Brand Yellow — Highlights, keywords, and primary buttons */
+  --color-brand-yellow: #F5C70F;   /* usage: Promotional emphasis, highlight text, CTA */
+  --color-brand-yellow-hover: #E0B400;
+
+  /* Preserved Accent 2: Plum / Purple — Identity, deep dark surfaces, outro curtains */
   --color-plum-50: #F5F3FF;
   --color-plum-100: #E9E4FF;
   --color-plum-200: #D8CCFF;
@@ -87,36 +108,36 @@
   --color-plum-600: #6D28D9;
   --color-plum-700: #5B21B6;
   --color-plum-800: #4C1D95; /* usage: Brand surface strong */
-  --color-plum-900: #2F1C50; /* usage: Brand identity & deep surfaces */
+  --color-plum-900: #2F1C50; /* usage: Brand identity, deep surfaces, footer */
 
-  /* Magenta — Primary actions, buttons, and interactive emphasis */
+  /* Preserved Accent 3: Pink / Magenta — Kinetic Calypso hover, links, active emphasis */
   --color-magenta-50: #FFF5FA;
   --color-magenta-100: #FECFEF;
   --color-magenta-200: #FBB4D9;
   --color-magenta-300: #F472B6;
   --color-magenta-400: #EC4899;
-  --color-magenta-500: #ED0F8F; /* usage: Primary CTA action default */
+  --color-magenta-500: #ED0F8F; /* usage: Primary CTA action / kinetic droplet */
   --color-magenta-600: #DB2777; /* usage: Primary CTA action hover */
   --color-magenta-700: #BE185D; /* usage: Primary CTA action pressed */
   --color-magenta-800: #9D174D;
   --color-magenta-900: #831843;
 
-  /* Supporting Brand Colors */
-  --color-brand-lavender: #C0A5FD; /* usage: Editorial surfaces and soft highlights */
-  --color-brand-yellow: #F5C70F;   /* usage: Promotional emphasis and highlighted text */
+  /* Preserved Accent 4: Four-Phases Opening Canvas — Warm linen used in intro animation stage */
+  --color-bg-page: #F5F3EE;           /* usage: Opening 4-phases animation canvas & curtain background */
+  --color-intro-canvas: #F5F3EE;      /* usage: Explicit alias for 4-phases opening stage */
 
-  /* Warm Neutral Scale — Product surfaces, canvas, and editorial content */
-  --color-bg-page: #F5F3EE;           /* usage: Post-outro canvas background / warm linen */
-  --color-warm-neutral-0: #FFFFFF;    /* usage: Light surfaces and inverse text */
-  --color-warm-neutral-50: #F8F7F7;   /* usage: Canvas background */
-  --color-warm-neutral-100: #F1EEEE;  /* usage: Subtle controls and inputs */
-  --color-warm-neutral-200: #EAECEA;  /* usage: Section surfaces and borders */
-  --color-warm-neutral-500: #838282;  /* usage: Secondary and placeholder text */
-  --color-warm-neutral-600: #626060;  /* usage: Strong secondary text and borders */
-  --color-warm-neutral-900: #0F172A;  /* usage: Primary body and interface text */
-  --color-warm-neutral-1000: #000000; /* usage: Editorial display text */
+  /* Editorial Surfaces & Neutral Compatibility Mapping */
+  --color-warm-neutral-0: #FFFFFF;    /* usage: Pure white surface */
+  --color-warm-neutral-50: #F9FAFB;   /* usage: Studio light grey canvas */
+  --color-warm-neutral-100: #F3F4F6;  /* usage: Subtle grey controls & inputs */
+  --color-warm-neutral-200: #E5E7EB;  /* usage: Clean monochrome border */
+  --color-warm-neutral-500: #9CA3AF;  /* usage: Secondary placeholder grey */
+  --color-warm-neutral-600: #4B5563;  /* usage: Strong secondary grey text */
+  --color-warm-neutral-700: #374151;  /* usage: Charcoal editorial body text */
+  --color-warm-neutral-900: #111827;  /* usage: Near-black interface text */
+  --color-warm-neutral-1000: #000000; /* usage: Pure black display text */
 
-  /* Base */
+  /* Base Monochromes */
   --color-white: #ffffff;
   --color-black: #000000;
   --color-transparent: transparent;

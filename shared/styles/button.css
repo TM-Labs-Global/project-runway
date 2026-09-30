@@ -28,8 +28,8 @@
 /* Variants */
 .btn-primary {
     background-color: var(--color-action-primary);
-    color: var(--text-display); /* Black text on Magenta 500 per spec 7.1 */
-    padding: var(--spacing-5) var(--spacing-8); /* 20px top/bottom, 32px left/right */
+    color: var(--text-inverse);
+    padding: var(--spacing-5) var(--spacing-8);
     box-shadow: var(--shadow-sm);
 
     &:hover {
@@ -43,9 +43,64 @@
     }
 }
 
+/* High-Contrast Monochrome Actions */
+.btn-black,
+.btn-dark {
+    background-color: var(--color-mono-1000);
+    color: var(--color-white);
+    border: 1px solid var(--color-mono-1000);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+        background-color: var(--color-mono-900);
+        border-color: var(--color-mono-900);
+        box-shadow: var(--shadow-md);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.btn-white,
+.btn-light {
+    background-color: var(--color-white);
+    color: var(--color-mono-1000);
+    border: 1px solid var(--color-mono-200);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+        background-color: var(--color-mono-100);
+        border-color: var(--color-mono-300);
+        box-shadow: var(--shadow-md);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+/* Preserved Yellow Accent Button */
+.btn-yellow,
+.btn-accent {
+    background-color: var(--color-brand-yellow);
+    color: var(--color-plum-900);
+    font-weight: var(--weight-semibold);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+        background-color: var(--color-brand-yellow-hover);
+        box-shadow: var(--shadow-md);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
 .btn-secondary {
     background-color: var(--color-action-secondary);
-    color: var(--text-inverse); /* White text on Plum 900 per spec 7.2 */
+    color: var(--text-inverse); /* White text on Plum 900 */
     box-shadow: var(--shadow-sm);
 
     &:hover {
@@ -70,9 +125,31 @@
 }
 
 /* Outline Variants */
+.btn-outline,
+.btn-outline-black {
+    background-color: transparent;
+    color: var(--color-mono-1000);
+    border: 2px solid var(--color-mono-1000);
+
+    &:hover {
+        background-color: var(--color-mono-1000);
+        color: var(--color-white);
+    }
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+
+    &:hover {
+        background-color: var(--color-white);
+        color: var(--color-mono-1000);
+    }
+}
+
 .btn-outline-plum,
-.btn-outline-navy,
-.btn-outline {
+.btn-outline-navy {
     background-color: transparent;
     color: var(--color-action-secondary);
     border: 2px solid var(--color-action-secondary);
@@ -91,7 +168,7 @@
 
     &:hover {
         background-color: var(--color-action-primary);
-        color: var(--text-display);
+        color: var(--color-white);
     }
 }
 

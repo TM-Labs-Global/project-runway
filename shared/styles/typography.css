@@ -247,13 +247,18 @@ body {
 }
 
 /* Intent Variants (Colors) */
-.text-default   { color: var(--text-base); }
-.text-primary   { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-muted     { color: var(--text-tertiary); }
-.text-brand     { color: var(--text-brand); }
-.text-error     { color: var(--text-error); }
-.text-success   { color: var(--text-success); }
-.text-warning   { color: var(--text-warning); }
-.text-info      { color: var(--text-info); }
-.text-inverse   { color: var(--text-inverse); }
+.text-default    { color: var(--text-base); }
+.text-primary    { color: var(--text-primary); }
+.text-secondary  { color: var(--text-secondary); }
+.text-muted      { color: var(--text-tertiary); }
+.text-brand      { color: var(--text-brand); }
+.text-yellow     { color: var(--color-brand-yellow); }
+.text-pink       { color: var(--color-magenta-500); }
+.text-purple     { color: var(--color-plum-900); }
+.text-mono-dark  { color: var(--color-mono-1000); }
+.text-mono-light { color: var(--color-white); }
+.text-error      { color: var(--text-error); }
+.text-success    { color: var(--text-success); }
+.text-warning    { color: var(--text-warning); }
+.text-info       { color: var(--text-info); }
+.text-inverse    { color: var(--text-inverse); }

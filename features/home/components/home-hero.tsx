@@ -1,140 +1,195 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { Volume2, VolumeX } from "lucide-react";
 
 export function HomeHero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-
-  const [viewport, setViewport] = useState({ width: 1440, height: 900 });
-  const [headerHeight, setHeaderHeight] = useState(440);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(false);
+  const userExplicitlyMutedRef = useRef(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      // Use Visual Viewport API on mobile for the true visible height
-      // (excludes browser chrome like the address bar), falling back to innerHeight.
-      const vv = window.visualViewport;
-      setViewport({
-        width: vv ? vv.width : window.innerWidth,
-        height: vv ? vv.height : window.innerHeight,
-      });
-      if (headerRef.current) {
-        setHeaderHeight(headerRef.current.offsetHeight);
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Helper to start playback and audio from 0:00
+    const startPlaybackAndAudio = () => {
+      if (!video) return;
+      video.currentTime = 0;
+      video.volume = 1.0;
+      video.muted = false;
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsMuted(false);
+          })
+          .catch(() => {
+            // Browser autoplay policy prevented unmuted playback before user interaction.
+            // Temporarily mute so video continues rolling frames smoothly.
+            video.muted = true;
+
+            // As soon as the user makes any gesture (click, tap, key, scroll), immediately unlock sound!
+            const unlockAudio = () => {
+              if (userExplicitlyMutedRef.current) return;
+              if (videoRef.current) {
+                videoRef.current.muted = false;
+                videoRef.current.volume = 1.0;
+                videoRef.current.play().catch(() => {});
+                setIsMuted(false);
+              }
+              cleanup();
+            };
+
+            const cleanup = () => {
+              window.removeEventListener("pointerdown", unlockAudio, true);
+              window.removeEventListener("touchstart", unlockAudio, true);
+              window.removeEventListener("mousedown", unlockAudio, true);
+              window.removeEventListener("keydown", unlockAudio, true);
+              window.removeEventListener("click", unlockAudio, true);
+              window.removeEventListener("wheel", unlockAudio, true);
+            };
+
+            window.addEventListener("pointerdown", unlockAudio, { capture: true, once: true });
+            window.addEventListener("touchstart", unlockAudio, { capture: true, once: true });
+            window.addEventListener("mousedown", unlockAudio, { capture: true, once: true });
+            window.addEventListener("keydown", unlockAudio, { capture: true, once: true });
+            window.addEventListener("click", unlockAudio, { capture: true, once: true });
+            window.addEventListener("wheel", unlockAudio, { capture: true, once: true });
+          });
       }
     };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    // Visual Viewport fires its own resize event on mobile when chrome collapses
-    window.visualViewport?.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.visualViewport?.removeEventListener("resize", handleResize);
-    };
+
+    // Determine if the intro animation is active or already played
+    const isIntroActive = document.documentElement.classList.contains("intro-active");
+    const hasIntroPlayed = sessionStorage.getItem("pra_intro_played");
+
+    if (isIntroActive || !hasIntroPlayed) {
+      // Intro is active: hold video paused at 0:00 so it doesn't play silently behind the loader
+      video.pause();
+      video.currentTime = 0;
+
+      const onReveal = () => {
+        startPlaybackAndAudio();
+        window.removeEventListener("pra:intro-reveal", onReveal);
+      };
+
+      window.addEventListener("pra:intro-reveal", onReveal);
+
+      return () => {
+        window.removeEventListener("pra:intro-reveal", onReveal);
+      };
+    } else {
+      // Intro already finished in this session: start immediately
+      startPlaybackAndAudio();
+    }
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const toggleSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const isDesktop = viewport.width >= 1024;
-  const gutter = isDesktop ? 100 : 20;
-  const gap = isDesktop ? 140 : 56; // 80px (var(--spacing-20)) desktop, 56px (var(--spacing-14)) mobile
-  const initialWidth = Math.max(280, viewport.width - gutter * 2);
-  const initialHeight = isDesktop ? 486 : 280;
-  const initialTop = headerHeight + gap;
-
-  // Animations driven by scroll progress
-  // Grace window [0 → 0.06]: text stays fully visible even if Lenis has a slight
-  // momentum overshoot past the floor when the four-phases pin releases.
-  // Framer clamps outside the range, so values below 0.06 are always opacity 1.
-  const textOpacity = useTransform(scrollYProgress, [0.06, 0.26], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0.06, 0.26], [0, -30]);
-
-  // Video expands to full page (100vw x 100vh) over 0 -> 0.8 scroll progress
-  const videoWidth = useTransform(
-    scrollYProgress,
-    [0, 0.8],
-    [initialWidth, viewport.width]
-  );
-  const videoHeight = useTransform(
-    scrollYProgress,
-    [0, 0.8],
-    [initialHeight, viewport.height]
-  );
-  const videoTop = useTransform(scrollYProgress, [0, 0.8], [initialTop, 0]);
-  const videoRadius = useTransform(scrollYProgress, [0, 0.8], [24, 0]);
+    if (isMuted || video.muted) {
+      // User clicked Unmute -> turn sound ON
+      userExplicitlyMutedRef.current = false;
+      video.muted = false;
+      video.volume = 1.0;
+      video.play().catch(() => {});
+      setIsMuted(false);
+    } else {
+      // User clicked Mute -> turn sound OFF
+      userExplicitlyMutedRef.current = true;
+      video.muted = true;
+      setIsMuted(true);
+    }
+  };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-[260dvh]"
-    >
-      {/* Sticky Full-Viewport Stage with 0 padding to allow full-bleed expansion */}
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
-        {/* Top Header Row (Headline + Description & CTA) - Layered at z-0 */}
-        <motion.div
-          ref={headerRef}
-          style={{ opacity: textOpacity, y: textY }}
-          className="relative z-0 w-full pt-[140px] lg:pt-[180px] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
+    <section className="relative w-full min-h-screen h-[100svh] overflow-hidden bg-black flex flex-col justify-end items-center pt-[140px] lg:pt-[180px] pb-16 lg:pb-24 px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
+      {/* 1. Full-bleed Background Runway Video with Zoom Container */}
+      <div className="hero-video-container absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <video
+          ref={videoRef}
+          loop
+          playsInline
+          className="w-full h-full object-cover pointer-events-none"
         >
-          <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-8 lg:gap-12">
-            {/* Main Headline with Masked Editorial Line Reveals */}
-            <div className="w-full lg:w-[600px] lg:shrink-0">
-              <h2 className="font-display font-normal tracking-tight text-white m-0">
-                Get Ready For{" "}
-                <span className="text-[var(--color-brand-yellow)]">Style Drama</span>
-              </h2>
-            </div>
-
-            {/* Description & CTA with Staggered Fade Up */}
-            <div className="w-full lg:w-[360px] lg:shrink-0 flex flex-col gap-6 pt-2">
-              <p className="text-white/70 font-sans text-sm sm:text-base leading-[22px] m-0">
-                The biggest fashion face-off. 10 designers compete for the ultimate
-                fashion spotlight. Who will claim the crown as Africa&apos;s next
-                biggest fashion icon?
-              </p>
-              <div>
-                <a
-                  href="https://projectrunwayafrica.com/project-runway-africa-season-one-registration/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] [--calypso-fill:var(--color-action-primary)] font-semibold transition-all duration-300 hover:scale-[1.02]"
-                >
-                  <span>Register Now</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Expanding Video Banner - Layered at z-10 to expand OVER the text */}
-        <motion.div
-          style={{
-            width: videoWidth,
-            height: videoHeight,
-            top: videoTop,
-            left: "50%",
-            x: "-50%",
-            borderRadius: videoRadius,
-          }}
-          className="absolute z-10 overflow-hidden shadow-2xl bg-neutral-900"
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover pointer-events-none"
-          >
-            <source
-              src="/models-on-runway-walking-2.mp4"
-              type="video/mp4"
-            />
-          </video>
-        </motion.div>
+          <source src="/project-runway-africa-teaser-1.mp4" type="video/mp4" />
+        </video>
       </div>
-    </div>
+
+      {/* 2. Atmospheric Editorial Gradient for Contrast & Legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 pointer-events-none z-10" />
+
+      {/* 3. Audio Toggle Button (Floating Glassmorphism Pill) */}
+      <div className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 pointer-events-auto">
+        <button
+          type="button"
+          onClick={toggleSound}
+          className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md border border-white/20 hover:border-white/50 text-white text-xs tracking-wider uppercase font-medium transition-all duration-300 hover:scale-105 shadow-xl shadow-black/50 cursor-pointer"
+          aria-label={isMuted ? "Unmute teaser video" : "Mute teaser video"}
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+              <span className="text-white/80 group-hover:text-white">Unmute</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-4 h-4 text-[#ffd700] animate-pulse" />
+              <span className="text-white font-semibold">Mute</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* 4. Foreground Content Frame — Centered horizontally, anchored towards the bottom */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-auto">
+        {/* Main Display Headline (H1) with Masked Line Reveals */}
+        <h1 className="hero-headline font-display font-normal text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight text-white m-0 leading-[0.95] flex flex-col items-center text-center">
+          {/* Line 1 */}
+          <span className="hero-line overflow-hidden inline-block pb-[0.12em] -mb-[0.12em]">
+            <span className="hero-headline-line-inner inline-block">
+              The Emmy-Winning
+            </span>
+          </span>
+
+          {/* Line 2: Project Runway (White) + Is In Africa. (White) */}
+          <span className="hero-line overflow-hidden inline-block pb-[0.12em] -mb-[0.12em]">
+            <span className="hero-headline-line-inner inline-block">
+              <span className="text-white">
+                Project Runway
+              </span>{" "}
+              <span className="text-white">
+                Is In Africa.
+              </span>
+            </span>
+          </span>
+        </h1>
+
+        {/* CTA Buttons: Primary & Secondary */}
+        <div className="hero-cta-group mt-8 lg:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+          {/* Primary Action */}
+          <a
+            href="https://projectrunwayafrica.com/project-runway-africa-season-one-registration/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-lg btn-calypso bg-white text-black [--calypso-fill:#e5e7eb] [--text-inverse:#000000] hover:text-black font-semibold transition-all duration-300 hover:scale-[1.02] inline-flex items-center w-full sm:w-auto"
+          >
+            <span>Register Now</span>
+          </a>
+
+          {/* Secondary Action: Sponsorship & Partnership */}
+          <a
+            href="mailto:info@projectrunwayafrica.com"
+            className="btn btn-lg btn-outline-white font-medium transition-all duration-300 hover:scale-[1.02] inline-flex items-center w-full sm:w-auto"
+          >
+            <span>Partner With Us</span>
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
+

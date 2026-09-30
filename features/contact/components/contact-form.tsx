@@ -42,12 +42,12 @@ export function ContactForm() {
   };
 
   // Shared class strings — single source of truth for the form's editorial underline style
-  const fieldLabel = "font-sans text-xs uppercase font-bold tracking-wider text-[var(--color-warm-neutral-900)]";
-  const fieldInput = "w-full bg-transparent border-0 border-b border-[var(--color-warm-neutral-300)] pb-3 pt-1 text-sm sm:text-base font-sans text-[var(--color-warm-neutral-1000)] placeholder:text-[#9ca3af] outline-none rounded-none transition-colors duration-200 focus:border-[var(--color-warm-neutral-1000)]";
-  const fieldCheckbox = "w-4 h-4 rounded border-[var(--color-warm-neutral-400)] text-[var(--color-plum-900)] accent-[var(--color-magenta-500)] cursor-pointer";
+  const fieldLabel = "font-sans text-xs uppercase font-bold tracking-wider text-[var(--color-mono-900)]";
+  const fieldInput = "w-full bg-transparent border-0 border-b border-[var(--color-mono-300)] pb-3 pt-1 text-sm sm:text-base font-sans text-[var(--color-mono-1000)] placeholder:text-[#9ca3af] outline-none rounded-none transition-colors duration-200 focus:border-[var(--color-mono-1000)]";
+  const fieldCheckbox = "w-4 h-4 rounded border-[var(--color-mono-400)] text-[var(--color-plum-900)] accent-[var(--color-brand-yellow)] cursor-pointer";
 
   return (
-    <section className="w-full bg-[var(--color-warm-neutral-0)] text-[var(--color-warm-neutral-1000)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)] py-[var(--spacing-15)] lg:py-[var(--spacing-30)] overflow-hidden">
+    <section className="w-full bg-white text-[var(--color-mono-1000)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)] py-[var(--spacing-15)] lg:py-[var(--spacing-30)] overflow-hidden">
       <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-12 lg:gap-16">
         {/* Left Column: Eyebrow, Display Headline & Response Timeline */}
         <div className="flex flex-col justify-between w-full lg:max-w-[660px] xl:max-w-[720px] shrink-0 gap-10 lg:gap-0 lg:py-1">
@@ -57,12 +57,12 @@ export function ContactForm() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-warm-neutral-500)] m-0"
+              className="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-mono-500)] m-0"
             >
               WRITE TO US
             </motion.p>
 
-            <h2 className="uppercase font-display font-normal text-5xl lg:text-8xl-5 leading-[var(--leading-h2-mobile)] lg:leading-[var(--leading-h2-desktop)] tracking-tight m-0 text-[var(--color-warm-neutral-1000)] flex flex-col items-start select-none">
+            <h2 className="uppercase font-display font-normal text-5xl lg:text-8xl-5 leading-[var(--leading-h2-mobile)] lg:leading-[var(--leading-h2-desktop)] tracking-tight m-0 text-[var(--color-mono-1000)] flex flex-col items-start select-none">
               <span className="overflow-hidden inline-block pb-[0.12em] -mb-[0.12em]">
                 <motion.span
                   initial={{ y: "110%", opacity: 0 }}
@@ -95,7 +95,7 @@ export function ContactForm() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans text-xs sm:text-sm text-[var(--color-warm-neutral-500)] leading-relaxed max-w-[280px] m-0"
+            className="font-sans text-xs sm:text-sm text-[var(--color-mono-500)] leading-relaxed max-w-[280px] m-0"
           >
             Our team typically responds within two working days.
           </motion.p>

@@ -26,20 +26,20 @@ function resolveColor(value: string): string {
 
 interface SmoothBackgroundSequenceProps {
   children: ReactNode;
-  /** Starting canvas color (default: warm neutral 50 / #F8F7F7) */
+  /** Starting canvas color (default: intro canvas / #F5F3EE) */
   startColor?: string;
-  /** Middle accent color (default: plum 900 / #2F1C50) */
+  /** Middle accent color (default: editorial black / #000000) */
   middleColor?: string;
-  /** Ending canvas color (default: warm neutral 50 / #F8F7F7) */
+  /** Ending canvas color (default: intro canvas / #F5F3EE) */
   endColor?: string;
   className?: string;
 }
 
 export function SmoothBackgroundSequence({
   children,
-  startColor = "var(--color-warm-neutral-50)",
-  middleColor = "var(--color-plum-900)",
-  endColor = "var(--color-warm-neutral-50)",
+  startColor = "var(--color-intro-canvas)",
+  middleColor = "var(--color-mono-1000)",
+  endColor = "var(--color-intro-canvas)",
   className = "",
 }: SmoothBackgroundSequenceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,9 +54,9 @@ export function SmoothBackgroundSequence({
     const resolvedEnd = resolveColor(endColor);
 
     // Text color tokens for Directors section
-    const resolvedHeadingStart = resolveColor("var(--color-warm-neutral-600)");
-    const resolvedNameStart = resolveColor("var(--color-warm-neutral-1000)");
-    const resolvedBioStart = resolveColor("var(--color-warm-neutral-600)");
+    const resolvedHeadingStart = resolveColor("var(--color-mono-600)");
+    const resolvedNameStart = resolveColor("var(--color-mono-1000)");
+    const resolvedBioStart = resolveColor("var(--color-mono-600)");
 
     const headingEnd = "#FFFFFF";
     const nameEnd = "#FFFFFF";

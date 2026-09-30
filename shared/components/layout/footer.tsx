@@ -19,7 +19,7 @@ export function Footer() {
   // };
 
   return (
-    <footer className="bg-[var(--color-plum-900)] w-full text-white overflow-hidden pt-[var(--spacing-15)] lg:pt-[var(--spacing-30)] pb-[var(--spacing-10)] lg:pb-[var(--spacing-15)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
+    <footer className="bg-[var(--color-mono-1000)] w-full text-white overflow-hidden pt-[var(--spacing-15)] lg:pt-[var(--spacing-30)] pb-[var(--spacing-10)] lg:pb-[var(--spacing-15)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
       <div className="flex flex-col gap-10 lg:gap-[60px] w-full">
         {/* Top Zone - Sponsorship & Action (Moved down to column below) */}
         {/*
@@ -31,13 +31,13 @@ export function Footer() {
 
           <a
             href="mailto:info@projectrunwayafrica.com"
-            className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] font-semibold transition-all duration-300 hover:scale-[1.02]"
+            className="btn btn-lg btn-calypso bg-white text-black [--calypso-fill:#e5e7eb] [--text-inverse:#000000] hover:text-black font-semibold transition-all duration-300 hover:scale-[1.02]"
           >
             <span>Contact Us</span>
           </a>
         </div>
 
-        <div className="bg-[var(--color-brand-yellow)]/20 h-px w-full" />
+        <div className="bg-white/10 h-px w-full" />
         */}
 
         {/* Bottom Zone - 3 Columns */}
@@ -46,10 +46,10 @@ export function Footer() {
           <div className="w-full lg:w-[320px] shrink-0">
             <div className="w-[240px] sm:w-[300px] lg:w-[320px] h-auto">
               <Image
-                src="/logo/project-runway-logo.svg"
+                src="/logo/pra-logo-white.png"
                 alt="Project Runway Africa Logo"
-                width={320}
-                height={108}
+                width={664}
+                height={212}
                 className="w-full h-auto object-contain"
               />
             </div>
@@ -64,7 +64,7 @@ export function Footer() {
             <div>
               <a
                 href="mailto:info@projectrunwayafrica.com"
-                className="btn btn-lg btn-calypso bg-[var(--color-brand-yellow)] hover:bg-[#e0b400] text-[var(--color-plum-900)] [--calypso-fill:var(--color-action-primary)] font-semibold transition-all duration-300 hover:scale-[1.02] inline-flex items-center"
+                className="btn btn-lg btn-calypso bg-white text-black [--calypso-fill:#e5e7eb] [--text-inverse:#000000] hover:text-black font-semibold transition-all duration-300 hover:scale-[1.02] inline-flex items-center"
               >
                 <span>Contact Us</span>
               </a>
@@ -74,7 +74,7 @@ export function Footer() {
           {/* Newsletter Column (Commented Out) */}
           {/*
           <div className="w-full lg:w-[460px] xl:w-[480px] shrink-0 flex flex-col gap-6 sm:gap-7">
-            <p className="text-[var(--color-brand-yellow)] text-xs sm:text-sm uppercase font-semibold font-sans tracking-wider m-0">
+            <p className="text-white text-xs sm:text-sm uppercase font-semibold font-sans tracking-wider m-0">
               Newsletter
             </p>
 
@@ -104,7 +104,7 @@ export function Footer() {
 
           {/* Social Column */}
           <div className="w-full lg:w-auto shrink-0 flex flex-col gap-4 sm:gap-5">
-            <p className="text-[var(--color-brand-yellow)] text-xs sm:text-sm uppercase font-semibold font-sans tracking-wider m-0">
+            <p className="text-white text-xs sm:text-sm uppercase font-semibold font-sans tracking-wider m-0">
               Follow
             </p>
 

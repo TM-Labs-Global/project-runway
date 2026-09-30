@@ -12,6 +12,7 @@ interface Story {
   alt: string;
   href: string;
   imagePosition?: string;
+  objectPosition?: string;
 }
 
 const featuredStory = {
@@ -20,7 +21,7 @@ const featuredStory = {
   title: "‘Project Runway’ to Launch African Edition in 2025",
   excerpt:
     "A new edition of the hit fashion design competition show, Project Runway Africa, is set to launch next year, showcasing emerging African designer talent from across the continent.",
-  image: "/images/different-fashions/series-of-black-models.jpg",
+  image: "/images/new-pr-images/female-model-in-flowery-dress.jpg",
   alt: "‘Project Runway’ to Launch African Edition in 2025 - The Hollywood Reporter",
   href: "https://www.hollywoodreporter.com/tv/tv-news/project-runway-africa-2025-1236074710/",
 };
@@ -31,10 +32,10 @@ const supportingStories: Story[] = [
     category: "World Screen",
     date: "03 Dec 2024",
     title: "Project Runway Africa Coming in 2025",
-    image: "/images/new-fashion-images/black-lady-walking.png",
+    image: "/images/new-pr-images/two-male-models-against-a-red-wall.jpg",
     alt: "Project Runway Africa Coming in 2025 - World Screen",
     href: "https://worldscreen.com/tvformats/project-runway-africa-coming-in-2025/",
-    imagePosition: "object-top",
+    objectPosition: "center 22%",
   },
   {
     id: 2,
@@ -42,8 +43,7 @@ const supportingStories: Story[] = [
     date: "03 Dec 2024",
     title:
       "Takeout Media and What Network to fashion African version of Project Runway",
-    image:
-      "/images/new-fashion-images/two-african-dressmaker-woman-designed-new-red-dress-mannequin-tailor-office-black-seamstress-girls.jpg",
+    image: "/images/new-pr-images/pr-cast-and-crew.jpg",
     alt: "Takeout Media and What Network to fashion African version of Project Runway - C21Media",
     href: "https://www.c21media.net/news/takeout-media-and-what-network-to-fashion-african-version-of-project-runway/",
     imagePosition: "object-center",
@@ -80,7 +80,9 @@ export function News() {
   return (
     <section
       ref={sectionRef}
-      className="bg-transparent w-full text-[var(--color-warm-neutral-1000)] overflow-hidden py-[var(--spacing-15)] lg:py-[var(--spacing-30)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
+      data-header-theme="light"
+      /* Background is dynamically managed by SmoothBackgroundSequence as var(--color-intro-canvas) (#F5F3EE), matching get-ready.tsx */
+      className="bg-transparent w-full text-[var(--color-mono-1000)] overflow-hidden py-[var(--spacing-15)] lg:py-[var(--spacing-30)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
     >
       <div className="flex flex-col gap-12 lg:gap-[72px] items-center w-full">
         {/* Section Header */}
@@ -102,7 +104,7 @@ export function News() {
         <article className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start w-full">
           {/* Featured Image */}
           <div
-            className={`w-full lg:w-[54%] xl:w-[680px] 2xl:w-[740px] aspect-square shrink-0 rounded-[var(--radius-2xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)] transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`w-full lg:w-[54%] xl:w-[680px] 2xl:w-[740px] aspect-square shrink-0 rounded-[var(--radius-2xl)] overflow-hidden shadow-sm border border-[var(--color-mono-200)] bg-[var(--color-mono-100)] transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isVisible
                 ? "scale-100 opacity-100"
                 : "scale-95 opacity-0 motion-reduce:scale-100 motion-reduce:opacity-100"
@@ -112,7 +114,7 @@ export function News() {
               href={featuredStory.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta-600)]"
+              className="relative block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-mono-400)]"
             >
               <Image
                 src={featuredStory.image}
@@ -133,24 +135,24 @@ export function News() {
             }`}
           >
             {/* Metadata */}
-            <span className="text-[var(--color-warm-neutral-500)] text-xs font-sans font-medium uppercase tracking-wider">
+            <span className="text-[var(--color-mono-500)] text-xs font-sans font-medium uppercase tracking-wider">
               {featuredStory.category} • {featuredStory.date}
             </span>
 
             {/* Headline — semantic h5: 40px mobile -> 56px desktop */}
-            <h5 className="m-0 tracking-tight text-[var(--color-warm-neutral-1000)]">
+            <h5 className="m-0 tracking-tight text-[var(--color-mono-1000)]">
               <a
                 href={featuredStory.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[var(--color-magenta-600)] transition-colors duration-300"
+                className="hover:text-[var(--color-mono-600)] transition-colors duration-300"
               >
                 {featuredStory.title}
               </a>
             </h5>
 
             {/* Excerpt */}
-            <p className="text-[var(--color-warm-neutral-600)] font-sans text-base leading-relaxed m-0">
+            <p className="text-[var(--color-mono-600)] font-sans text-base leading-relaxed m-0">
               {featuredStory.excerpt}
             </p>
 
@@ -159,7 +161,7 @@ export function News() {
               href={featuredStory.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex gap-2.5 items-center group cursor-pointer pt-2 text-[var(--color-magenta-600)] transition-colors duration-200"
+              className="flex gap-2.5 items-center group cursor-pointer pt-2 text-[var(--color-mono-600)] hover:text-[var(--color-mono-1000)] transition-colors duration-200"
             >
               <span className="text-sm font-medium font-sans group-hover:underline">
                 Read story
@@ -185,7 +187,7 @@ export function News() {
 
         {/* Supporting Stories List */}
         <div className="flex flex-col w-full pt-4">
-          <div className="bg-[var(--color-warm-neutral-200)] h-px w-full" />
+          <div className="bg-[var(--color-mono-200)] h-px w-full" />
 
           {supportingStories.map((story, idx) => (
             <div key={story.id}>
@@ -193,7 +195,7 @@ export function News() {
                 href={story.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta-600)]"
+                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-mono-400)]"
               >
                 <article
                   className={`flex flex-row gap-4 sm:gap-8 items-center justify-between py-6 sm:py-8 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -207,23 +209,24 @@ export function News() {
                 >
                   {/* Story Info */}
                   <div className="flex flex-col gap-2.5 sm:gap-3 items-start flex-1 min-w-0 pr-2 sm:pr-4">
-                    <span className="text-[var(--color-warm-neutral-500)] text-xs font-sans font-medium uppercase tracking-wider">
+                    <span className="text-[var(--color-mono-500)] text-xs font-sans font-medium uppercase tracking-wider">
                       {story.category} • {story.date}
                     </span>
 
                     {/* Headline — semantic h6: 32px mobile & desktop */}
-                    <h6 className="m-0 tracking-tight text-[var(--color-warm-neutral-1000)] group-hover:text-[var(--color-magenta-600)] transition-colors duration-300">
+                    <h6 className="m-0 tracking-tight text-[var(--color-mono-1000)] group-hover:text-[var(--color-mono-600)] transition-colors duration-300">
                       {story.title}
                     </h6>
                   </div>
 
                   {/* Story Thumbnail */}
-                  <div className="relative w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm bg-[var(--color-warm-neutral-200)]">
+                  <div className="relative w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm border border-[var(--color-mono-200)] bg-[var(--color-mono-100)]">
                     <Image
                       src={story.image}
                       alt={story.alt}
                       fill
                       sizes="(max-width: 640px) 120px, 220px"
+                      style={story.objectPosition ? { objectPosition: story.objectPosition } : undefined}
                       className={`object-cover ${
                         story.imagePosition || "object-center"
                       } transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.05]`}
@@ -231,7 +234,7 @@ export function News() {
                   </div>
                 </article>
               </a>
-              <div className="bg-[var(--color-warm-neutral-200)] h-px w-full" />
+              <div className="bg-[var(--color-mono-200)] h-px w-full" />
             </div>
           ))}
         </div>

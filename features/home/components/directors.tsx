@@ -34,7 +34,7 @@ function ProducerCard({
   return (
     <article className="flex flex-col text-left group">
       {/* Portrait Photo Frame with Subtle Hover Zoom */}
-      <div className="relative w-full aspect-[3/4] max-h-[520px] rounded-[var(--radius-xl)] lg:rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-warm-neutral-200)] shadow-sm">
+      <div className="relative w-full aspect-[3/4] max-h-[520px] rounded-[var(--radius-xl)] lg:rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-mono-100)]">
         <Image
           src={image}
           alt={name}
@@ -48,14 +48,14 @@ function ProducerCard({
       {/* Producer Editorial Details */}
       <div className="pt-6 text-left">
         <h4
-          style={{ color: "var(--color-directors-title, var(--color-warm-neutral-1000))" }}
+          style={{ color: "var(--color-directors-title, var(--color-mono-1000))" }}
           className="font-display font-normal text-4xl lg:text-h4-desktop tracking-tight leading-[var(--leading-feature)] lg:leading-[var(--leading-h4-desktop)] m-0"
         >
           {name}
         </h4>
         {bio && (
           <p
-            style={{ color: "var(--color-directors-bio, var(--color-warm-neutral-600))" }}
+            style={{ color: "var(--color-directors-bio, var(--color-mono-600))" }}
             className="font-sans text-base leading-relaxed mt-4 m-0"
           >
             {bio}
@@ -70,23 +70,21 @@ export function Directors() {
   return (
     <section
       aria-labelledby="directors-heading"
+      data-header-theme="light"
+      /* Background is dynamically managed by SmoothBackgroundSequence as var(--color-intro-canvas) (#F5F3EE), matching get-ready.tsx */
       className="w-full bg-transparent py-[var(--spacing-15)] lg:py-[var(--spacing-30)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_1fr] xl:grid-cols-[280px_1fr_1fr] gap-10 lg:gap-12 xl:gap-16 items-start w-full">
-        {/* Section Headline Column with Yellow Accent Bar */}
+        {/* Section Headline Column */}
         <div className="flex flex-col items-start pt-1">
           <h2
             id="directors-heading"
-            style={{ color: "var(--color-directors-heading, var(--color-warm-neutral-600))" }}
+            style={{ color: "var(--color-directors-heading, var(--color-mono-600))" }}
             className="font-sans font-semibold text-lg sm:text-xl lg:text-2xl uppercase tracking-[2px] leading-snug m-0"
           >
             <div>Executive</div>
             <div>Producers</div>
           </h2>
-          <div
-            className="w-14 h-[3px] bg-[var(--color-brand-yellow)] mt-4"
-            aria-hidden="true"
-          />
         </div>
 
         {/* Executive Producer Cards */}

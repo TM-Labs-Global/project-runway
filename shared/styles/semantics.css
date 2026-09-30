@@ -1,71 +1,115 @@
 :root {
-  /* Backgrounds */
-  --bg-page: var(--color-plum-900); /* usage: Canvas background (deep purple) */
-  --bg-surface: var(--color-warm-neutral-0); /* usage: Default light surface */
-  --bg-surface-hover: var(--color-warm-neutral-100); /* usage: Subtle surface hover */
-  --bg-surface-active: var(--color-warm-neutral-200); /* usage: Subtle surface active */
-  --bg-surface-elevated: var(--color-warm-neutral-0); /* usage: Elevated card surface */
+  /* ==========================================================================
+     Canvas & Background Semantics (Predominantly Black, White, and Grey)
+     ========================================================================== */
+  --bg-page: var(--color-mono-1000);              /* usage: Main page canvas foundation (pure black) */
+  --bg-canvas-light: var(--color-white);           /* usage: Crisp white canvas section */
+  --bg-canvas-subtle: var(--color-mono-50);        /* usage: Studio light grey section (#f9fafb) */
+  --bg-canvas-dark: var(--color-mono-1000);        /* usage: Pure black stage */
 
-  --bg-primary: var(--color-plum-900); /* usage: Primary brand dark surface */
-  --bg-primary-hover: var(--color-plum-800); /* usage: Primary brand hover surface */
-  --bg-primary-subtle: var(--color-plum-50); /* usage: Primary brand subtle surface */
+  /* Surfaces & Cards */
+  --bg-surface: var(--color-white);                /* usage: Default card/surface (crisp white) */
+  --bg-surface-hover: var(--color-mono-100);       /* usage: Light grey surface hover */
+  --bg-surface-active: var(--color-mono-200);      /* usage: Mid grey surface active */
+  --bg-surface-elevated: var(--color-white);       /* usage: Elevated white card */
+  --bg-surface-dark: var(--color-mono-900);        /* usage: Charcoal dark card/panel */
+  --bg-surface-dark-hover: var(--color-mono-800);  /* usage: Dark surface hover */
 
-  --bg-secondary: var(--color-magenta-500); /* usage: Secondary interactive surface */
-  --bg-secondary-hover: var(--color-magenta-600); /* usage: Secondary interactive hover */
-  --bg-secondary-subtle: var(--color-magenta-50); /* usage: Secondary interactive subtle */
+  /* Primary Monochrome Surfaces */
+  --bg-primary: var(--color-mono-1000);            /* usage: Dominant dark brand surface (black) */
+  --bg-primary-hover: var(--color-mono-900);       /* usage: Dark hover surface */
+  --bg-primary-subtle: var(--color-mono-100);      /* usage: Light grey tint surface */
 
-  /* Editorial & Brand Surfaces */
-  --bg-editorial: var(--color-brand-lavender); /* usage: Editorial surfaces & soft highlights */
-  --bg-brand: var(--color-plum-800); /* usage: Strong brand surface */
-  --bg-brand-deep: var(--color-plum-900); /* usage: Deep brand surface */
-  --bg-promotional: var(--color-brand-yellow); /* usage: Promotional emphasis surface */
+  /* Secondary Interactive Surfaces */
+  --bg-secondary: var(--color-magenta-500);        /* usage: Preserved Pink interactive surface */
+  --bg-secondary-hover: var(--color-magenta-600);  /* usage: Preserved Pink hover */
+  --bg-secondary-subtle: var(--color-magenta-50);  /* usage: Preserved Pink subtle tint */
 
-  --bg-danger: var(--color-error-500); /* usage: Danger feedback surface */
-  --bg-danger-hover: var(--color-error-600); /* usage: Danger feedback hover */
-  --bg-danger-subtle: var(--color-error-50); /* usage: Danger subtle surface */
+  /* Editorial & Preserved Brand Surfaces */
+  --bg-editorial: var(--color-white);              /* usage: High-fashion editorial canvas (clean white) */
+  --bg-editorial-subtle: var(--color-mono-50);     /* usage: Editorial subtle studio grey */
+  --bg-brand: var(--color-plum-900);               /* usage: Preserved deep Purple/Plum surface */
+  --bg-brand-deep: var(--color-plum-900);          /* usage: Preserved deep Purple/Plum footer & identity */
+  --bg-promotional: var(--color-brand-yellow);     /* usage: Preserved Yellow promotional emphasis */
+  --bg-intro: var(--color-intro-canvas);           /* usage: Preserved 4-phases opening linen canvas (#F5F3EE) */
 
-  /* Actions */
-  --color-action-primary: var(--color-magenta-500); /* usage: Primary CTA action default */
-  --color-action-primary-hover: var(--color-magenta-600); /* usage: Primary CTA action hover */
-  --color-action-primary-active: var(--color-magenta-700); /* usage: Primary CTA action pressed */
-  --color-action-secondary: var(--color-plum-900); /* usage: Secondary action default */
-  --color-action-secondary-hover: var(--color-plum-800); /* usage: Secondary action hover */
-  --color-action-tertiary: var(--color-plum-100); /* usage: Tertiary action default */
-  --color-action-tertiary-hover: var(--color-plum-200); /* usage: Tertiary action hover */
-  --color-action-disabled: var(--color-warm-neutral-200); /* usage: Disabled action state */
+  /* System Feedback */
+  --bg-danger: var(--color-error-500);
+  --bg-danger-hover: var(--color-error-600);
+  --bg-danger-subtle: var(--color-error-50);
+
+  /* ==========================================================================
+     Actions & Interactive Tokens
+     ========================================================================== */
+  /* Preserved Accent Action (Pink / Magenta) */
+  --color-action-primary: var(--color-magenta-500);
+  --color-action-primary-hover: var(--color-magenta-600);
+  --color-action-primary-active: var(--color-magenta-700);
+
+  /* Preserved Accent Action (Yellow) */
+  --color-action-accent: var(--color-brand-yellow);
+  --color-action-accent-hover: var(--color-brand-yellow-hover);
+
+  /* Monochrome High-Contrast Actions (Black & White) */
+  --color-action-dark: var(--color-mono-1000);     /* Pure black action button */
+  --color-action-dark-hover: var(--color-mono-900);
+  --color-action-light: var(--color-white);        /* Pure white action button */
+  --color-action-light-hover: var(--color-mono-100);
+
+  /* Preserved Secondary Action (Purple) */
+  --color-action-secondary: var(--color-plum-900);
+  --color-action-secondary-hover: var(--color-plum-800);
+  --color-action-tertiary: var(--color-mono-100);
+  --color-action-tertiary-hover: var(--color-mono-200);
+  --color-action-disabled: var(--color-mono-200);
 
   --foreground: var(--text-base);
   --background: var(--bg-page);
 
-  /* Text */
-  --text-base: var(--color-warm-neutral-900); /* usage: Primary body & interface text */
-  --text-display: var(--color-warm-neutral-1000); /* usage: Editorial display text */
-  --text-primary: var(--color-warm-neutral-900); /* usage: Primary interface text */
-  --text-secondary: var(--color-warm-neutral-600); /* usage: Strong secondary text */
-  --text-tertiary: var(--color-warm-neutral-500); /* usage: Secondary and placeholder text */
-  --text-disabled: var(--color-warm-neutral-500); /* usage: Disabled text */
+  /* ==========================================================================
+     Text & Typography Semantics
+     ========================================================================== */
+  --text-base: var(--color-mono-900);              /* Charcoal body text on light backgrounds */
+  --text-display: var(--color-mono-1000);          /* Pure black high-fashion editorial display text */
+  --text-primary: var(--color-mono-1000);          /* Primary interface text (black) */
+  --text-secondary: var(--color-mono-600);        /* Neutral grey secondary text */
+  --text-tertiary: var(--color-mono-400);         /* Muted caption and placeholder grey */
+  --text-disabled: var(--color-mono-400);
+  --text-inverse: var(--color-white);              /* Stark white text on black/dark surfaces */
 
-  --text-brand: var(--color-plum-900); /* usage: Brand identity text */
-  --text-accent: var(--color-brand-yellow); /* usage: Promotional accent text */
-  --text-inverse: var(--color-warm-neutral-0); /* usage: Inverse light text on dark surfaces */
+  /* Preserved Accent Typography */
+  --text-brand: var(--color-plum-900);             /* Preserved Purple brand text */
+  --text-accent: var(--color-brand-yellow);        /* Preserved Yellow highlight text */
+  --text-pink: var(--color-magenta-500);           /* Preserved Pink accent text */
 
-  --text-success: var(--color-success-700); /* usage: Success feedback text */
-  --text-warning: var(--color-warning-700); /* usage: Warning feedback text */
-  --text-error: var(--color-error-700); /* usage: Error feedback text */
-  --text-info: var(--color-info-700); /* usage: Info feedback text */
+  /* Status Text */
+  --text-success: var(--color-success-700);
+  --text-warning: var(--color-warning-700);
+  --text-error: var(--color-error-700);
+  --text-info: var(--color-info-700);
 
-  /* Borders */
-  --border-subtle: var(--color-warm-neutral-200); /* usage: Subtle section & card border */
-  --border-default: var(--color-warm-neutral-500); /* usage: Default control border */
-  --border-strong: var(--color-warm-neutral-900); /* usage: Strong high-contrast border */
-  --border-inverse: var(--color-warm-neutral-0); /* usage: Inverse border on dark surfaces */
-  --border-focus: var(--color-plum-500); /* usage: Focus indicator border */
+  /* ==========================================================================
+     Borders & Dividers (Monochrome Editorial Hairlines)
+     ========================================================================== */
+  --border-subtle: var(--color-mono-200);          /* #E5E7EB subtle hairline border */
+  --border-default: var(--color-mono-300);         /* #D1D5DB control border */
+  --border-strong: var(--color-mono-900);          /* High-contrast black border */
+  --border-dark-subtle: var(--color-mono-800);     /* #1F2937 dark surface border */
+  --border-inverse: var(--color-white);            /* White border on dark surfaces */
+  --border-focus: var(--color-mono-1000);          /* Black focus ring */
 
-  --border-error: var(--color-error-500); /* usage: Error state border */
-  --border-success: var(--color-success-500); /* usage: Success state border */
+  /* Preserved Accent Borders */
+  --border-accent-yellow: var(--color-brand-yellow);
+  --border-accent-pink: var(--color-magenta-500);
+  --border-brand-purple: var(--color-plum-900);
 
-  /* Component Specific Semantics */
-  --link-color: var(--color-magenta-500);
+  --border-error: var(--color-error-500);
+  --border-success: var(--color-success-500);
+
+  /* ==========================================================================
+     Component-Specific Semantics
+     ========================================================================== */
+  --link-color: var(--color-magenta-500);          /* Preserved Pink link color */
   --link-hover: var(--color-magenta-600);
 
   --shadow-card: var(--shadow-sm);
@@ -75,7 +119,10 @@
   --radius-button: var(--radius-md);
   --radius-input: var(--radius-md);
 
+  /* Kinetic Calypso Hover droplet default fill (Preserved Pink) */
+  --calypso-fill: var(--color-magenta-500);
+
   /* Button text compatibility aliases */
-  --color-text-primary: var(--color-warm-neutral-1000);
-  --color-text-inverse: var(--color-warm-neutral-0);
+  --color-text-primary: var(--color-mono-1000);
+  --color-text-inverse: var(--color-white);
 }

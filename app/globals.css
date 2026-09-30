@@ -12,6 +12,7 @@
 @import "../shared/styles/typography.css";
 @import "../shared/styles/button.css";
 @import "../shared/styles/input.css";
+@import "../shared/styles/intro-loader.css";
 
 :root {
   --background: var(--bg-page);

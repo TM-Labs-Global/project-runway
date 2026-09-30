@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 export function ContactHero() {
   return (
-    <section className="w-full bg-[var(--color-bg-page)] text-[var(--color-warm-neutral-1000)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)] pt-[140px] lg:pt-[180px] pb-[var(--spacing-15)] lg:pb-[var(--spacing-30)] overflow-hidden">
+    <section className="w-full bg-white text-[var(--color-mono-1000)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)] pt-[140px] lg:pt-[180px] pb-[var(--spacing-15)] lg:pb-[var(--spacing-30)] overflow-hidden">
       <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-12 lg:gap-16">
         {/* Left Column: Headline at top, Narrative copy at bottom */}
         <div className="flex flex-col justify-between w-full lg:max-w-[560px] xl:max-w-[640px] gap-8 lg:gap-0 lg:py-1">
@@ -17,7 +17,7 @@ export function ContactHero() {
                   initial={{ y: "110%", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-[var(--color-warm-neutral-1000)]"
+                  className="block text-[var(--color-mono-1000)]"
                 >
                   LET&apos;S MAKE
                 </motion.span>
@@ -49,7 +49,7 @@ export function ContactHero() {
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            <p className="font-sans text-sm sm:text-base leading-relaxed text-[var(--color-warm-neutral-600)] max-w-[400px] m-0">
+            <p className="font-sans text-sm sm:text-base leading-relaxed text-[var(--color-mono-600)] max-w-[400px] m-0">
               For stories, partnerships, press and every bold idea in between — our
               team would love to hear from you.
             </p>
