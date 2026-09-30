@@ -14,12 +14,13 @@ export function HomeHero() {
 
     // Helper to start playback and audio from 0:00
     const startPlaybackAndAudio = () => {
-      if (!video) return;
-      video.currentTime = 0;
-      video.volume = 1.0;
-      video.muted = false;
+      const vid = videoRef.current;
+      if (!vid) return;
+      vid.currentTime = 0;
+      vid.volume = 1.0;
+      vid.muted = false;
 
-      const playPromise = video.play();
+      const playPromise = vid.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
@@ -27,10 +28,12 @@ export function HomeHero() {
           })
           .catch(() => {
             // Browser autoplay policy prevented unmuted playback before user interaction.
-            // Temporarily mute so video continues rolling frames smoothly.
-            video.muted = true;
+            // 1. Immediately mute and play so video frames roll continuously without stalling!
+            vid.muted = true;
+            setIsMuted(true);
+            vid.play().catch(() => {});
 
-            // As soon as the user makes any gesture (click, tap, key, scroll), immediately unlock sound!
+            // 2. As soon as the user makes any gesture (click, tap, key), immediately unlock sound!
             const unlockAudio = () => {
               if (userExplicitlyMutedRef.current) return;
               if (videoRef.current) {
@@ -48,7 +51,6 @@ export function HomeHero() {
               window.removeEventListener("mousedown", unlockAudio, true);
               window.removeEventListener("keydown", unlockAudio, true);
               window.removeEventListener("click", unlockAudio, true);
-              window.removeEventListener("wheel", unlockAudio, true);
             };
 
             window.addEventListener("pointerdown", unlockAudio, { capture: true, once: true });
@@ -56,7 +58,6 @@ export function HomeHero() {
             window.addEventListener("mousedown", unlockAudio, { capture: true, once: true });
             window.addEventListener("keydown", unlockAudio, { capture: true, once: true });
             window.addEventListener("click", unlockAudio, { capture: true, once: true });
-            window.addEventListener("wheel", unlockAudio, { capture: true, once: true });
           });
       }
     };
@@ -70,15 +71,24 @@ export function HomeHero() {
       video.pause();
       video.currentTime = 0;
 
+      let triggered = false;
       const onReveal = () => {
+        if (triggered) return;
+        triggered = true;
         startPlaybackAndAudio();
         window.removeEventListener("pra:intro-reveal", onReveal);
       };
 
       window.addEventListener("pra:intro-reveal", onReveal);
 
+      // Safety fallback: if reveal event doesn't fire within 8.5s, force video start so it NEVER stays frozen
+      const fallbackTimer = setTimeout(() => {
+        onReveal();
+      }, 8500);
+
       return () => {
         window.removeEventListener("pra:intro-reveal", onReveal);
+        clearTimeout(fallbackTimer);
       };
     } else {
       // Intro already finished in this session: start immediately
@@ -111,6 +121,8 @@ export function HomeHero() {
       <div className="hero-video-container absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <video
           ref={videoRef}
+          autoPlay
+          muted
           loop
           playsInline
           className="w-full h-full object-cover pointer-events-none"
