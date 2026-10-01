@@ -34,7 +34,7 @@ function ProducerCard({
   return (
     <article className="flex flex-col text-left group">
       {/* Portrait Photo Frame with Subtle Hover Zoom */}
-      <div className="relative w-full aspect-[3/4] max-h-[520px] rounded-[var(--radius-xl)] lg:rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-mono-100)]">
+      <div className="relative w-full aspect-[3/4] max-h-[520px] overflow-hidden bg-[var(--color-mono-100)]">
         <Image
           src={image}
           alt={name}

@@ -199,8 +199,8 @@
   will-change: transform, opacity;
 }
 
-.intro-active .hero-audio-toggle {
-  transform: translateY(20px);
+.intro-active .hero-play-button-wrapper {
+  transform: scale(0);
   opacity: 0 !important;
   pointer-events: none !important;
   will-change: transform, opacity;

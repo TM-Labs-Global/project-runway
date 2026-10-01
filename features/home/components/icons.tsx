@@ -149,7 +149,7 @@ export function Icons() {
             (img, idx) => (
               <div
                 key={idx}
-                className={`relative ${img.height} w-[220px] sm:w-[260px] lg:w-[295px] shrink-0 rounded-[var(--radius-lg)] overflow-hidden bg-[var(--color-mono-900)] shadow-sm mr-[var(--spacing-5)] lg:mr-[var(--spacing-6)]`}
+                className={`relative ${img.height} w-[220px] sm:w-[260px] lg:w-[295px] shrink-0 overflow-hidden bg-[var(--color-mono-900)] shadow-sm mr-[var(--spacing-5)] lg:mr-[var(--spacing-6)]`}
               >
                 <Image
                   src={img.src}

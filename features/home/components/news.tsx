@@ -104,7 +104,7 @@ export function News() {
         <article className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start w-full">
           {/* Featured Image */}
           <div
-            className={`w-full lg:w-[54%] xl:w-[680px] 2xl:w-[740px] aspect-square shrink-0 rounded-[var(--radius-2xl)] overflow-hidden shadow-sm border border-[var(--color-mono-200)] bg-[var(--color-mono-100)] transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`w-full lg:w-[54%] xl:w-[680px] 2xl:w-[740px] aspect-square shrink-0 overflow-hidden shadow-sm border border-[var(--color-mono-200)] bg-[var(--color-mono-100)] transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isVisible
                 ? "scale-100 opacity-100"
                 : "scale-95 opacity-0 motion-reduce:scale-100 motion-reduce:opacity-100"
@@ -220,7 +220,7 @@ export function News() {
                   </div>
 
                   {/* Story Thumbnail */}
-                  <div className="relative w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 rounded-[var(--radius-xl)] overflow-hidden shadow-sm border border-[var(--color-mono-200)] bg-[var(--color-mono-100)]">
+                  <div className="relative w-[120px] sm:w-[220px] h-[85px] sm:h-[140px] shrink-0 overflow-hidden shadow-sm border border-[var(--color-mono-200)] bg-[var(--color-mono-100)]">
                     <Image
                       src={story.image}
                       alt={story.alt}

@@ -115,8 +115,8 @@
   --shadow-card: var(--shadow-sm);
   --shadow-popover: var(--shadow-lg);
 
-  --radius-card: var(--radius-lg);
-  --radius-button: var(--radius-md);
+  --radius-card: var(--radius-none);
+  --radius-button: var(--radius-none);
   --radius-input: var(--radius-md);
 
   /* Kinetic Calypso Hover droplet default fill (Preserved Pink) */

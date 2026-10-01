@@ -69,7 +69,7 @@ export function BoldIdeas() {
               delay: 0.4,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="relative w-full aspect-[4/5] rounded-[var(--radius-2xl)] overflow-hidden shadow-sm bg-black"
+            className="relative w-full aspect-[4/5] overflow-hidden shadow-sm bg-black"
           >
             <Image
               src="/images/new-pr-images/male-model-old-school.jpg"

@@ -246,7 +246,7 @@ export function GetReady() {
         {cardData.map((card, idx) => (
           <div
             key={card.id}
-            className="get-ready-card absolute w-[200px] sm:w-[250px] lg:w-[300px] aspect-[4/5] rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-2xl bg-[var(--color-mono-200)] will-change-transform"
+            className="get-ready-card absolute w-[200px] sm:w-[250px] lg:w-[300px] aspect-[4/5] overflow-hidden shadow-2xl bg-[var(--color-mono-200)] will-change-transform"
             style={{
               top: card.top,
               left: card.left,
