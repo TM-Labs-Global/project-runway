@@ -11,10 +11,10 @@ interface Producer {
 const producers: Producer[] = [
   {
     id: 1,
-    image: "/images/mr-elijah.jpg",
+    image: "/images/mr-elijah-new.jpeg",
     name: "Elijah Affi",
     bio: "Elijah Affi is a celebrated Executive Producer, Creative Director, and Co-Founder of Takeout Media, known for his innovative approach to media production. He served as Executive Producer for Tokunbo, a Netflix #1 film, and collaborates with top-tier organizations like the World Bank and TotalEnergies as a certified management consultant. Driven by a passion for impactful storytelling, Elijah continues to push creative boundaries and elevate global entertainment standards.",
-    objectPosition: "center 25%",
+    objectPosition: "center 20%",
   },
   {
     id: 2,
