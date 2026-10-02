@@ -212,7 +212,7 @@ export function HomeHero() {
           The biggest fashion face-off. 10 designers compete for the ultimate
           fashion spotlight. Who will claim the crown as Africa&apos;s next
           biggest fashion icon?{" "}
-          <strong className="font-semibold text-white">Application closes October 30th.</strong>
+          <strong className="font-semibold text-white">Registration closes October 30th.</strong>
         </p>
 
         {/* CTA Buttons: Primary & Secondary */}
