@@ -207,6 +207,14 @@ export function HomeHero() {
           </span>
         </h1>
 
+        {/* Subtext */}
+        <p className="hero-subtext mt-5 lg:mt-6 text-sm sm:text-base text-white/70 font-body font-normal leading-relaxed max-w-md">
+          The biggest fashion face-off. 10 designers compete for the ultimate
+          fashion spotlight. Who will claim the crown as Africa&apos;s next
+          biggest fashion icon?{" "}
+          <strong className="font-semibold text-white">Application closes October 30th.</strong>
+        </p>
+
         {/* CTA Buttons: Primary & Secondary */}
         <div className="hero-cta-group mt-8 lg:mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-4 sm:gap-5 w-full sm:w-auto">
           {/* Primary Action */}

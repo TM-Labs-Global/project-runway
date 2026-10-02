@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   title: "Project Runway",
   description: "The Emmy-winning Project Runway is in Africa.",
   icons: {
-    icon: "/logo/project-runway-logo.svg",
-    shortcut: "/logo/project-runway-logo.svg",
-    apple: "/logo/project-runway-logo.svg",
+    icon: "/logo/pra-logo-white.png",
+    shortcut: "/logo/pra-logo-white.png",
+    apple: "/logo/pra-logo-white.png",
   },
 };
 
@@ -56,7 +56,7 @@ export default function RootLayout({
           to the last scroll position before our JS can prevent it.
         */}
         <script dangerouslySetInnerHTML={{ __html: "history.scrollRestoration = 'manual';" }} />
-        <link rel="icon" type="image/svg+xml" href="/logo/project-runway-logo.svg" />
+        <link rel="icon" type="image/png" href="/logo/pra-logo-white.png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
