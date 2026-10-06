@@ -2,24 +2,76 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Play, X } from "lucide-react";
+import { Play, X, Volume2, VolumeX } from "lucide-react";
 
 export function HomeHero() {
   const backgroundVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const userExplicitlyMutedRef = useRef(false);
+  const wasMutedBeforeLightboxRef = useRef(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Background Ambient Runway Video - always muted for 100% reliable autoplay across all browsers
+  // Helper to start background playback and sound
+  const startPlaybackAndAudio = () => {
+    const vid = backgroundVideoRef.current;
+    if (!vid) return;
+
+    vid.currentTime = 0;
+    vid.volume = 1.0;
+    vid.muted = false;
+
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsMuted(false);
+        })
+        .catch(() => {
+          // Browser autoplay policy prevented unmuted playback before user interaction.
+          // 1. Immediately mute and play so video frames roll continuously without stalling
+          vid.muted = true;
+          setIsMuted(true);
+          vid.play().catch(() => {});
+
+          // 2. As soon as the user makes any gesture (click, tap, key), immediately unlock sound!
+          const unlockAudio = () => {
+            if (userExplicitlyMutedRef.current) return;
+            if (backgroundVideoRef.current) {
+              backgroundVideoRef.current.muted = false;
+              backgroundVideoRef.current.volume = 1.0;
+              backgroundVideoRef.current.play().catch(() => {});
+              setIsMuted(false);
+            }
+            cleanup();
+          };
+
+          const cleanup = () => {
+            window.removeEventListener("pointerdown", unlockAudio, true);
+            window.removeEventListener("touchstart", unlockAudio, true);
+            window.removeEventListener("mousedown", unlockAudio, true);
+            window.removeEventListener("keydown", unlockAudio, true);
+            window.removeEventListener("click", unlockAudio, true);
+          };
+
+          window.addEventListener("pointerdown", unlockAudio, { capture: true, once: true });
+          window.addEventListener("touchstart", unlockAudio, { capture: true, once: true });
+          window.addEventListener("mousedown", unlockAudio, { capture: true, once: true });
+          window.addEventListener("keydown", unlockAudio, { capture: true, once: true });
+          window.addEventListener("click", unlockAudio, { capture: true, once: true });
+        });
+    }
+  };
+
+  // Synchronize background video playback and sound with intro reveal
   useEffect(() => {
     const video = backgroundVideoRef.current;
     if (!video) return;
-
-    video.muted = true;
 
     const isIntroActive = document.documentElement.classList.contains("intro-active");
     const hasIntroPlayed = sessionStorage.getItem("pra_intro_played");
@@ -33,8 +85,7 @@ export function HomeHero() {
       const onReveal = () => {
         if (triggered) return;
         triggered = true;
-        video.currentTime = 0;
-        video.play().catch(() => {});
+        startPlaybackAndAudio();
         window.removeEventListener("pra:intro-reveal", onReveal);
       };
 
@@ -50,11 +101,11 @@ export function HomeHero() {
         clearTimeout(fallbackTimer);
       };
     } else {
-      video.play().catch(() => {});
+      startPlaybackAndAudio();
     }
   }, []);
 
-  // Wire up mobile video: when it exits fullscreen, resume background video
+  // Wire up mobile video: when it exits fullscreen, resume background video with restored audio
   useEffect(() => {
     const mobileVideo = mobileVideoRef.current;
     if (!mobileVideo) return;
@@ -66,7 +117,20 @@ export function HomeHero() {
       if (!isFullscreen) {
         mobileVideo.pause();
         mobileVideo.currentTime = 0;
-        backgroundVideoRef.current?.play().catch(() => {});
+
+        const bgVideo = backgroundVideoRef.current;
+        if (bgVideo) {
+          bgVideo.play().catch(() => {});
+          // Restore previous audio state if user hadn't explicitly muted
+          if (!wasMutedBeforeLightboxRef.current && !userExplicitlyMutedRef.current) {
+            bgVideo.muted = false;
+            bgVideo.volume = 1.0;
+            setIsMuted(false);
+          } else {
+            bgVideo.muted = true;
+            setIsMuted(true);
+          }
+        }
       }
     };
 
@@ -79,8 +143,35 @@ export function HomeHero() {
     };
   }, []);
 
+  // Toggle background runway sound
+  const toggleSound = () => {
+    const video = backgroundVideoRef.current;
+    if (!video) return;
+
+    if (isMuted || video.muted) {
+      // User clicked Unmute -> turn sound ON
+      userExplicitlyMutedRef.current = false;
+      video.muted = false;
+      video.volume = 1.0;
+      video.play().catch(() => {});
+      setIsMuted(false);
+    } else {
+      // User clicked Mute -> turn sound OFF
+      userExplicitlyMutedRef.current = true;
+      video.muted = true;
+      setIsMuted(true);
+    }
+  };
+
   const openLightbox = () => {
-    backgroundVideoRef.current?.pause();
+    const bgVideo = backgroundVideoRef.current;
+    if (bgVideo) {
+      // 1. Snapshot sound state before opening lightbox
+      wasMutedBeforeLightboxRef.current = bgVideo.muted;
+      // 2. Completely silence and pause background video
+      bgVideo.muted = true;
+      bgVideo.pause();
+    }
 
     // On touch/mobile devices: use native fullscreen video — bypasses all CSS stacking & Lenis issues
     const isTouchDevice = typeof window !== "undefined" && "ontouchstart" in window;
@@ -116,7 +207,22 @@ export function HomeHero() {
 
   const closeLightbox = () => {
     setIsLightboxOpen(false);
-    backgroundVideoRef.current?.play().catch(() => {});
+
+    const bgVideo = backgroundVideoRef.current;
+    if (bgVideo) {
+      // Resume background video
+      bgVideo.play().catch(() => {});
+      // Restore previous audio state if user hadn't explicitly muted
+      if (!wasMutedBeforeLightboxRef.current && !userExplicitlyMutedRef.current) {
+        bgVideo.muted = false;
+        bgVideo.volume = 1.0;
+        setIsMuted(false);
+      } else {
+        bgVideo.muted = true;
+        setIsMuted(true);
+      }
+    }
+
     if (typeof window !== "undefined" && (window as any).__lenis) {
       (window as any).__lenis.start();
     }
@@ -140,7 +246,9 @@ export function HomeHero() {
   }, [isLightboxOpen]);
 
   return (
-    <section className="relative w-full min-h-screen h-[100svh] overflow-hidden bg-black flex flex-col justify-end items-start pt-[140px] lg:pt-[180px] pb-16 lg:pb-24 px-[var(--spacing-5)] lg:px-[var(--spacing-25)]">
+    <section
+      className="relative w-full min-h-screen h-[100svh] overflow-hidden bg-black flex flex-col justify-end items-start pt-[140px] lg:pt-[180px] pb-16 lg:pb-24 px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
+    >
       {/* Hidden video for mobile native fullscreen playback */}
       <video
         ref={mobileVideoRef}
@@ -243,7 +351,29 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* 5. Desktop Lightbox — portal to document.body, only shown on non-touch devices */}
+      {/* 5. Audio Toggle Button (Floating Glassmorphism Pill) */}
+      <div className="hero-audio-toggle fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-40 pointer-events-auto">
+        <button
+          type="button"
+          onClick={toggleSound}
+          className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 hover:border-white/50 text-white text-xs tracking-wider uppercase font-medium transition-all duration-300 hover:scale-105 shadow-xl shadow-black/50 cursor-pointer select-none"
+          aria-label={isMuted ? "Unmute runway audio" : "Mute runway audio"}
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+              <span className="text-white/80 group-hover:text-white">Unmute</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-4 h-4 text-[var(--color-brand-yellow,#F5C70F)] animate-pulse" />
+              <span className="text-white font-semibold">Mute</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* 6. Desktop Lightbox — portal to document.body, only shown on non-touch devices */}
       {isMounted && isLightboxOpen
         ? createPortal(
             <div

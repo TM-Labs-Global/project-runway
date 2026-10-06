@@ -34,6 +34,24 @@
   will-change: clip-path;
 }
 
+/* Centered Brand Logo */
+.intro-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.intro-logo {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
 /* Brand Text: "Creativity Unlocked" */
 .intro-brand {
   position: absolute;
@@ -201,6 +219,13 @@
 
 .intro-active .hero-play-button-wrapper {
   transform: scale(0);
+  opacity: 0 !important;
+  pointer-events: none !important;
+  will-change: transform, opacity;
+}
+
+.intro-active .hero-audio-toggle {
+  transform: translateY(20px);
   opacity: 0 !important;
   pointer-events: none !important;
   will-change: transform, opacity;

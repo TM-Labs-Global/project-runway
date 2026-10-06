@@ -55,12 +55,16 @@ export function IntroLoader() {
       const headlineLines = document.querySelectorAll(".hero-headline-line-inner");
       const heroCtas = document.querySelector(".hero-cta-group");
       const heroAudio = document.querySelector(".hero-play-button-wrapper");
+      const heroSoundToggle = document.querySelector(".hero-audio-toggle");
+      const introLogo = document.querySelector(".intro-logo");
 
       if (siteHeader) gsap.set(siteHeader, { y: "-120%" });
       if (heroVideo) gsap.set(heroVideo, { scale: 1.5, transformOrigin: "center center" });
       if (headlineLines.length > 0) gsap.set(headlineLines, { y: "120%" });
       if (heroCtas) gsap.set(heroCtas, { scale: 0, opacity: 0 });
       if (heroAudio) gsap.set(heroAudio, { scale: 0, opacity: 0 });
+      if (heroSoundToggle) gsap.set(heroSoundToggle, { y: 20, opacity: 0 });
+      if (introLogo) gsap.set(introLogo, { opacity: 0, scale: 0.9 });
 
       const tl = gsap.timeline({
         delay: 0.15,
@@ -124,7 +128,8 @@ export function IntroLoader() {
       });
       */
 
-      // ─── Brand Reveal ("Creativity" / "Unlocked") ───
+      // ─── Brand Reveal ("Creativity" / "Unlocked") (Commented Out) ───
+      /*
       // "Creativity" (italic) slides DOWN from top (-120% -> 0%)
       tl.to(
         "#intro-word-1 h2",
@@ -174,9 +179,64 @@ export function IntroLoader() {
         },
         "<"
       );
+      */
 
-      // Anchor all reveal animations to the "wipe" label (starts 0.75s into brand exit)
-      tl.addLabel("wipe", "-=0.25");
+      // ─── Brand Logo: Fade In & Pulsing ───
+      /*
+      // Previous short timing (Commented Out)
+      tl.to(".intro-logo", {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+
+      tl.to(".intro-logo", {
+        scale: 1.08,
+        duration: 0.75,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: 1,
+      });
+
+      tl.to(".intro-logo", {
+        opacity: 0,
+        scale: 1.04,
+        duration: 0.45,
+        ease: "power2.inOut",
+      });
+      */
+
+      // 1. Logo fades in smoothly into place
+      tl.to(".intro-logo", {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+      // 2. Logo pulses with deliberate, breathing cycles
+      tl.to(".intro-logo", {
+        scale: 1.08,
+        duration: 0.85,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: 3, // 2 complete breathing cycles (~3.4s)
+      });
+
+      // 3. Brief hold at rest before the reveal
+      tl.to({}, { duration: 0.25 });
+
+      // 4. Logo exits smoothly as the page wipe initiates
+      tl.to(".intro-logo", {
+        opacity: 0,
+        scale: 1.04,
+        duration: 0.55,
+        ease: "power2.inOut",
+      });
+
+      // Anchor all reveal animations to the "wipe" label (starts slightly before logo fully finishes exit)
+      tl.addLabel("wipe", "-=0.2");
 
       // Signal the reveal moment so the hero video and audio start exactly as the screen opens
       tl.call(
@@ -189,13 +249,25 @@ export function IntroLoader() {
         "wipe"
       );
 
-      // 1. Overlay blocks wipe upward via clip-path
+      // 1. Single overlay rectangle wipes upward via clip-path
+      /*
+      // Dual split blocks with stagger (Commented Out)
       tl.to(
         ".intro-block",
         {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
           duration: 1.2,
           stagger: 0.12,
+          ease: "hop",
+        },
+        "wipe"
+      );
+      */
+      tl.to(
+        ".intro-block",
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+          duration: 1.2,
           ease: "hop",
         },
         "wipe"
@@ -267,6 +339,19 @@ export function IntroLoader() {
           "wipe+=0.5"
         );
       }
+
+      if (heroSoundToggle) {
+        tl.to(
+          heroSoundToggle,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "hop",
+          },
+          "wipe+=0.5"
+        );
+      }
     });
 
     return () => {
@@ -281,13 +366,14 @@ export function IntroLoader() {
       aria-label="Project Runway Africa Intro Reveal"
       className="intro-loader fixed inset-0 z-50 pointer-events-auto overflow-hidden"
     >
-      {/* 1. Dual-block wipe overlay */}
+      {/* 1. Single rectangle wipe overlay */}
       <div className="intro-overlay">
         <div className="intro-block" />
-        <div className="intro-block" />
+        {/* <div className="intro-block" /> */}
       </div>
 
-      {/* 2. Brand Text Split: Creativity (italic) / Unlocked */}
+      {/* 2. Brand Text Split: Creativity (italic) / Unlocked (Commented Out) */}
+      {/*
       <div className="intro-brand">
         <div className="intro-word" id="intro-word-1">
           <h2 className="font-display italic font-normal text-[var(--color-mono-600,#4b5563)] text-[clamp(2.5rem,7vw,6.5rem)] tracking-tight leading-[1.1] pb-[0.05em] select-none">
@@ -300,9 +386,20 @@ export function IntroLoader() {
           </h2>
         </div>
       </div>
+      */}
 
-      {/* 3. Center Vertical Divider Line */}
-      <div className="intro-divider" />
+      {/* Centered Brand Logo with Pulsing Animation */}
+      {/* <div className="intro-logo-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center"> */}
+      <div className="intro-logo-container">
+        <img
+          src="/logo/pra-loho-black.png"
+          alt="Project Runway Africa"
+          className="intro-logo w-44 sm:w-60 md:w-72 max-w-[80vw] h-auto object-contain select-none"
+        />
+      </div>
+
+      {/* 3. Center Vertical Divider Line (Commented Out) */}
+      {/* <div className="intro-divider" /> */}
 
       {/* 4. Minimalist Spinner (Commented out) */}
       {/*
