@@ -78,11 +78,11 @@ export function Icons() {
         {/* Main Headline — Line 1 indented right on desktop, Line 2 flush left */}
         <h2
           id="africa-icon-heading"
-          className="font-display font-normal tracking-tight flex flex-col m-0 text-white"
+          className="font-display font-normal tracking-tight flex flex-col m-0 text-white text-5xl lg:text-[clamp(3.5rem,6vw,7.5rem)]"
         >
           {/* Line 1 — flush left on mobile, indented on desktop (sweeps in from the right edge of the screen) */}
           <span
-            className={`block lg:pl-[220px] transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+            className={`block xl:pl-[220px] transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
               isVisible
                 ? "translate-x-0 opacity-100"
                 : "translate-x-[100vw] opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100"

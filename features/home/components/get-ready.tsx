@@ -233,7 +233,7 @@ export function GetReady() {
       ref={sectionRef}
       aria-label="Project Runway Africa scale and showcase"
       data-header-theme="light"
-      className="relative w-full h-screen bg-[var(--color-intro-canvas)] text-[var(--color-mono-1000)] select-none"
+      className="relative w-full h-screen bg-[var(--color-intro-canvas)] text-[var(--color-mono-1000)] select-none overflow-hidden"
     >
       {/* 1. Deep 3D Image Canvas (200vw x 200vh centered, 3D perspective) */}
       <div
@@ -279,7 +279,7 @@ export function GetReady() {
           >
             {/* Layer 1: Brand Yellow (Fastest Fan-Out, 4x) */}
             <h2
-              className="get-ready-title-1 absolute top-1/2 -translate-y-1/2 left-[6%] font-display italic font-normal uppercase tracking-tight text-left leading-[0.92] text-6xl sm:text-7xl md:text-8xl lg:text-8xl-5 sm:whitespace-nowrap will-change-transform m-0"
+              className="get-ready-title-1 absolute top-1/2 -translate-y-1/2 left-[6%] font-display italic font-normal uppercase tracking-tight text-left leading-[0.92] text-6xl sm:text-7xl md:text-8xl lg:text-[clamp(5rem,7vw,7.5rem)] sm:whitespace-nowrap will-change-transform m-0"
               style={{ color: "var(--color-brand-yellow, #F5C70F)" }}
               aria-hidden="true"
             >
@@ -294,7 +294,7 @@ export function GetReady() {
 
             {/* Layer 2: Kinetic Magenta (Middle Fan-Out, 2x) */}
             <h2
-              className="get-ready-title-2 absolute top-1/2 -translate-y-1/2 left-[6%] font-display italic font-normal uppercase tracking-tight text-left leading-[0.92] text-6xl sm:text-7xl md:text-8xl lg:text-8xl-5 sm:whitespace-nowrap will-change-transform m-0"
+              className="get-ready-title-2 absolute top-1/2 -translate-y-1/2 left-[6%] font-display italic font-normal uppercase tracking-tight text-left leading-[0.92] text-6xl sm:text-7xl md:text-8xl lg:text-[clamp(5rem,7vw,7.5rem)] sm:whitespace-nowrap will-change-transform m-0"
               style={{ color: "var(--color-magenta-500, #ED0F8F)" }}
               aria-hidden="true"
             >
@@ -309,7 +309,7 @@ export function GetReady() {
 
             {/* Layer 3: Solid Editorial Black (Base Anchor, 0x) */}
             <h2
-              className="get-ready-title-3 absolute top-1/2 -translate-y-1/2 left-[6%] font-display italic font-normal uppercase tracking-tight text-left leading-[0.92] text-6xl sm:text-7xl md:text-8xl lg:text-8xl-5 sm:whitespace-nowrap will-change-transform text-[var(--color-mono-1000)] m-0"
+              className="get-ready-title-3 absolute top-1/2 -translate-y-1/2 left-[6%] font-display italic font-normal uppercase tracking-tight text-left leading-[0.92] text-6xl sm:text-7xl md:text-8xl lg:text-[clamp(5rem,7vw,7.5rem)] sm:whitespace-nowrap will-change-transform text-[var(--color-mono-1000)] m-0"
             >
               {slide.line1}
               {slide.line2 && (

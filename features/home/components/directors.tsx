@@ -49,7 +49,7 @@ function ProducerCard({
       <div className="pt-6 text-left">
         <h4
           style={{ color: "var(--color-directors-title, var(--color-mono-1000))" }}
-          className="font-display font-normal text-4xl lg:text-h4-desktop tracking-tight leading-[var(--leading-feature)] lg:leading-[var(--leading-h4-desktop)] m-0"
+          className="font-display font-normal text-4xl lg:text-[clamp(2.75rem,5vw,4.5rem)] tracking-tight leading-[var(--leading-feature)] lg:leading-[1.1] m-0"
         >
           {name}
         </h4>
@@ -72,7 +72,7 @@ export function Directors() {
       aria-labelledby="directors-heading"
       data-header-theme="light"
       /* Background is dynamically managed by SmoothBackgroundSequence as var(--color-intro-canvas) (#F5F3EE), matching get-ready.tsx */
-      className="w-full bg-transparent py-[var(--spacing-15)] lg:py-[var(--spacing-30)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
+      className="w-full bg-transparent overflow-hidden py-[var(--spacing-15)] lg:py-[var(--spacing-30)] px-[var(--spacing-5)] lg:px-[var(--spacing-25)]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_1fr] xl:grid-cols-[280px_1fr_1fr] gap-10 lg:gap-12 xl:gap-16 items-start w-full">
         {/* Section Headline Column */}

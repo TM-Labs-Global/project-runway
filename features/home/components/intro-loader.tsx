@@ -63,7 +63,7 @@ export function IntroLoader() {
       if (heroAudio) gsap.set(heroAudio, { scale: 0, opacity: 0 });
 
       const tl = gsap.timeline({
-        delay: 0.3,
+        delay: 0.15,
         defaults: {
           ease: "hop",
         },
@@ -79,7 +79,12 @@ export function IntroLoader() {
         },
       });
 
-      // ─── PHASE 1: Counter Sequence (00 -> 20 -> 60 -> 80 -> 99) ───
+      // ─── PHASE 1: Counter Sequence & Spinner (Commented Out) ───
+      /*
+      // Initial Spinner Hold
+      tl.to({}, { duration: 0.5 });
+
+      // Counter Sequence (00 -> 20 -> 60 -> 80 -> 99)
       const counts = containerRef.current?.querySelectorAll(".intro-count");
 
       if (counts) {
@@ -112,22 +117,21 @@ export function IntroLoader() {
         });
       }
 
-      // ─── PHASE 2: Brand Reveal ("Creativity" / "Unlocked") ───
       // Fade out spinner
       tl.to(".intro-spinner", {
         opacity: 0,
         duration: 0.3,
       });
+      */
 
-      // Slide brand words into view (simultaneously with spinner fade)
+      // ─── Brand Reveal ("Creativity" / "Unlocked") ───
       // "Creativity" (italic) slides DOWN from top (-120% -> 0%)
       tl.to(
         "#intro-word-1 h2",
         {
           y: "0%",
           duration: 1,
-        },
-        "<"
+        }
       );
 
       // "Unlocked" slides UP from bottom (120% -> 0%)
@@ -300,14 +304,16 @@ export function IntroLoader() {
       {/* 3. Center Vertical Divider Line */}
       <div className="intro-divider" />
 
-      {/* 4. Minimalist Spinner */}
+      {/* 4. Minimalist Spinner (Commented out) */}
+      {/*
       <div className="intro-spinner-container">
         <div className="intro-spinner" />
       </div>
+      */}
 
-      {/* 5. Cinematic Counter Sequence: 00 -> 20 -> 60 -> 80 -> 99 */}
+      {/* 5. Cinematic Counter Sequence: 00 -> 20 -> 60 -> 80 -> 99 (Commented out) */}
+      {/*
       <div className="intro-counter">
-        {/* Count 0: 00 */}
         <div className="intro-count">
           <div className="intro-digit">
             <h2>0</h2>
@@ -317,7 +323,6 @@ export function IntroLoader() {
           </div>
         </div>
 
-        {/* Count 1: 20 */}
         <div className="intro-count">
           <div className="intro-digit">
             <h2>2</h2>
@@ -327,7 +332,6 @@ export function IntroLoader() {
           </div>
         </div>
 
-        {/* Count 2: 60 */}
         <div className="intro-count">
           <div className="intro-digit">
             <h2>6</h2>
@@ -337,7 +341,6 @@ export function IntroLoader() {
           </div>
         </div>
 
-        {/* Count 3: 80 */}
         <div className="intro-count">
           <div className="intro-digit">
             <h2>8</h2>
@@ -347,7 +350,6 @@ export function IntroLoader() {
           </div>
         </div>
 
-        {/* Count 4: 99 */}
         <div className="intro-count">
           <div className="intro-digit">
             <h2>9</h2>
@@ -357,6 +359,7 @@ export function IntroLoader() {
           </div>
         </div>
       </div>
+      */}
     </aside>
   );
 }

@@ -169,28 +169,34 @@ export function HomeHero() {
       {/* 2. Atmospheric Editorial Gradient for Contrast & Legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 pointer-events-none z-10" />
 
-      {/* 3. Option A: Ambient Floating Play Button */}
-      <div className="hero-play-button-wrapper absolute top-[36%] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:translate-x-0 sm:left-auto sm:right-[10%] lg:right-[15%] sm:top-1/2 sm:-translate-y-1/2 z-20 flex flex-col items-center gap-3">
+      {/* 3. Option A: Ambient Floating Play Button — On mobile: in document flow above headline with label beside it; On desktop: absolute right-centered */}
+      <div
+        onClick={openLightbox}
+        className="hero-play-button-wrapper group cursor-pointer relative sm:absolute mt-auto sm:mt-0 sm:top-1/2 sm:-translate-y-1/2 sm:right-[10%] lg:right-[15%] sm:left-auto z-30 flex flex-row sm:flex-col items-center gap-3.5 sm:gap-3 mb-5 sm:mb-0 select-none"
+      >
         <button
           type="button"
-          onClick={openLightbox}
-          className="group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 hover:border-white/60 transition-all duration-500 hover:scale-110 shadow-2xl cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            openLightbox();
+          }}
+          className="relative flex items-center justify-center w-14 h-14 sm:w-24 sm:h-24 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 hover:border-white/60 transition-all duration-500 hover:scale-110 shadow-2xl cursor-pointer shrink-0"
           aria-label="Play teaser video with sound in lightbox"
         >
           {/* Subtle Radar Pulse Ring */}
           <span className="absolute inset-0 rounded-full border border-white/40 animate-ping opacity-30 pointer-events-none" />
           {/* Play Icon */}
-          <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-white translate-x-0.5 transition-transform duration-300 group-hover:scale-110" />
+          <Play className="w-6 h-6 sm:w-10 sm:h-10 text-white fill-white translate-x-0.5 transition-transform duration-300 group-hover:scale-110" />
         </button>
-        <span className="text-xs uppercase tracking-[0.2em] text-white/80 font-medium select-none pointer-events-none">
+        <span className="text-xs uppercase tracking-[0.2em] text-white/80 group-hover:text-white font-medium select-none transition-colors">
           Watch Teaser
         </span>
       </div>
 
       {/* 4. Foreground Content Frame — Left-aligned and anchored to bottom-left */}
-      <div className="relative z-20 w-full max-w-7xl flex flex-col items-start text-left mt-auto">
+      <div className="relative z-20 w-full max-w-7xl flex flex-col items-start text-left mt-0 sm:mt-auto">
         {/* Main Display Headline (H1) with Masked Line Reveals */}
-        <h1 className="hero-headline font-display font-normal text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight text-white m-0 leading-[0.95] flex flex-col items-start text-left">
+        <h1 className="hero-headline font-display font-normal text-5xl sm:text-6xl md:text-7xl lg:text-[clamp(3.5rem,6.5vw,7rem)] tracking-tight text-white m-0 leading-[0.95] flex flex-col items-start text-left">
           {/* Line 1 */}
           <span className="hero-line overflow-hidden inline-block pb-[0.12em] -mb-[0.12em]">
             <span className="hero-headline-line-inner inline-block">
@@ -212,7 +218,7 @@ export function HomeHero() {
           The biggest fashion face-off. 10 designers compete for the ultimate
           fashion spotlight. Who will claim the crown as Africa&apos;s next
           biggest fashion icon?{" "}
-          <strong className="font-semibold text-white">Registration closes October 30th.</strong>
+          <strong className="font-semibold text-white">Registration closes November 15th.</strong>
         </p>
 
         {/* CTA Buttons: Primary & Secondary */}

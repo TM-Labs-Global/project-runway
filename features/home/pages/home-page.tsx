@@ -4,7 +4,7 @@ import { SmoothBackgroundSequence } from "@/shared/components/ui";
 
 export function HomePage() {
   return (
-    <main className="flex flex-col min-h-screen bg-[var(--bg-page)] font-sans relative">
+    <main className="flex flex-col min-h-screen bg-[var(--bg-page)] font-sans relative w-full overflow-x-clip">
       <IntroLoader />
       <SiteHeader />
       <HomeHero />

@@ -89,7 +89,7 @@ export function News() {
         <div className="flex flex-col items-center text-center w-full">
           <div className="overflow-hidden">
             <h2
-              className={`m-0 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`text-5xl lg:text-[clamp(3.5rem,6vw,7rem)] m-0 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-full opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"

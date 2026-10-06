@@ -96,12 +96,12 @@
   pointer-events: none;
 }
 
-/* Loading Spinner */
+/* Loading Spinner — Centered in the middle */
 .intro-spinner-container {
   position: absolute;
-  bottom: 10%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 10;
   pointer-events: none;
 }
