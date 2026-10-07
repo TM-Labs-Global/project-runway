@@ -308,7 +308,7 @@ export function HomeHero() {
           {/* Line 1 */}
           <span className="hero-line overflow-hidden inline-block pb-[0.12em] -mb-[0.12em]">
             <span className="hero-headline-line-inner inline-block">
-              The Emmy-Winning
+              The Emmy Award Winning
             </span>
           </span>
 
