@@ -18,11 +18,11 @@ interface Story {
 const featuredStory = {
   category: "The Hollywood Reporter",
   date: "02 Dec 2024",
-  title: "‘Project Runway’ to Launch African Edition in 2025",
+  title: "‘Project Runway’ to Launch African Edition Coming Soon",
   excerpt:
     "A new edition of the hit fashion design competition show, Project Runway Africa, is set to launch next year, showcasing emerging African designer talent from across the continent.",
   image: "/images/new-pr-images/female-model-in-flowery-dress.jpg",
-  alt: "‘Project Runway’ to Launch African Edition in 2025 - The Hollywood Reporter",
+  alt: "‘Project Runway’ to Launch African Edition Coming Soon - The Hollywood Reporter",
   href: "https://www.hollywoodreporter.com/tv/tv-news/project-runway-africa-2025-1236074710/",
 };
 
@@ -31,9 +31,9 @@ const supportingStories: Story[] = [
     id: 1,
     category: "World Screen",
     date: "03 Dec 2024",
-    title: "Project Runway Africa Coming in 2025",
+    title: "Project Runway Africa Coming Soon",
     image: "/images/new-pr-images/two-male-models-against-a-red-wall.jpg",
-    alt: "Project Runway Africa Coming in 2025 - World Screen",
+    alt: "Project Runway Africa Coming Soon - World Screen",
     href: "https://worldscreen.com/tvformats/project-runway-africa-coming-in-2025/",
     objectPosition: "center 22%",
   },

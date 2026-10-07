@@ -94,7 +94,7 @@ export function GetReady() {
               </div>
 
               {/* Panel Image Left: Pan-African Model Collective */}
-              <div className="relative h-[440px] sm:h-[400px] lg:h-[460px] xl:h-[480px] w-full rounded-[var(--radius-2xl,1.5rem)] overflow-hidden shadow-sm bg-[var(--color-mono-200,#e5e7eb)]">
+              <div className="relative h-[440px] sm:h-[400px] lg:h-[460px] xl:h-[480px] w-full overflow-hidden shadow-sm bg-[var(--color-mono-200,#e5e7eb)]">
                 <Image
                   src={imgPanelLeft}
                   alt="Project Runway Africa models in runway formation representing participating countries"
@@ -110,7 +110,7 @@ export function GetReady() {
             {/* Right Column: Image then Stat on mobile and desktop */}
             <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10 items-start w-full lg:w-[500px] xl:w-[560px] 2xl:w-[600px] lg:shrink-0">
               {/* Panel Image Right: Designer Couture Gown */}
-              <div className="relative h-[440px] sm:h-[420px] lg:h-[500px] xl:h-[540px] w-full rounded-[var(--radius-2xl,1.5rem)] overflow-hidden shadow-sm bg-[var(--color-mono-200,#e5e7eb)]">
+              <div className="relative h-[440px] sm:h-[420px] lg:h-[500px] xl:h-[540px] w-full overflow-hidden shadow-sm bg-[var(--color-mono-200,#e5e7eb)]">
                 <Image
                   src={imgPanelRight}
                   alt="Fashion model walking the runway in vibrant blue couture gown"
@@ -147,7 +147,7 @@ export function GetReady() {
               </span>
             </h4>
 
-            <div className="relative h-[440px] sm:h-[420px] lg:h-[560px] xl:h-[600px] w-full max-w-[1040px] xl:max-w-[1140px] rounded-[var(--radius-2xl,1.5rem)] overflow-hidden shadow-sm bg-[var(--color-mono-200,#e5e7eb)]">
+            <div className="relative h-[440px] sm:h-[420px] lg:h-[560px] xl:h-[600px] w-full max-w-[1040px] xl:max-w-[1140px] overflow-hidden shadow-sm bg-[var(--color-mono-200,#e5e7eb)]">
               <Image
                 src={imgPanelBottom}
                 alt="Project Runway Africa hero model posing on the illuminated stage"
