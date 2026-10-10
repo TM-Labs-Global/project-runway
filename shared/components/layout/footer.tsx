@@ -1,8 +1,33 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { Linkedin, Instagram } from "lucide-react";
+import {
+  XLogo,
+  TiktokLogo,
+  InstagramLogo,
+  SnapchatLogo,
+} from "@phosphor-icons/react/dist/ssr";
+
+const SOCIAL_LINKS = [
+  {
+    name: "Twitter (X)",
+    href: "https://x.com/projectrunwayaf/status/2108865099259941094?s=46",
+    icon: XLogo,
+  },
+  {
+    name: "TikTok",
+    href: "https://vm.tiktok.com/ZN8BjWe1t/",
+    icon: TiktokLogo,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/reel/DeT2RDvIiBw/?xtok=N3FnZDducDNyc2p4",
+    icon: InstagramLogo,
+  },
+  {
+    name: "Snapchat",
+    href: "https://snapchat.com/t/IIomCU5w",
+    icon: SnapchatLogo,
+  },
+];
 
 export function Footer() {
   // Newsletter state (commented out with newsletter section)
@@ -108,25 +133,22 @@ export function Footer() {
               Follow
             </p>
 
-            <div className="flex gap-6 items-center text-white/80">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="hover:text-white transition-colors cursor-pointer"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/projectrunway.africa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="hover:text-white transition-colors cursor-pointer"
-              >
-                <Instagram className="w-6 h-6" />
-              </a>
+            <div className="flex gap-5 sm:gap-6 items-center text-white/80">
+              {SOCIAL_LINKS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.name}
+                    className="hover:text-white transition-colors cursor-pointer"
+                  >
+                    <Icon size={24} className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
